@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerBridge AI — Complete Architecture, Design, and UI Specification</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- KaTeX CDN for mathematical formulas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+    <!-- Mermaid CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                fontFamily: 'Inter, -apple-system, sans-serif',
+                fontSize: '11px',
+                primaryColor: '#e0e7ff',
+                primaryTextColor: '#0f172a',
+                primaryBorderColor: '#6366f1',
+                lineColor: '#6366f1',
+                secondaryColor: '#f8fafc',
+                tertiaryColor: '#ffffff',
+                clusterBkg: '#f8fafc',
+                clusterBorder: '#cbd5e1'
+            },
+            flowchart: {
+                curve: 'basis',
+                htmlLabels: true,
+                rankSpacing: 25,
+                nodeSpacing: 18
+            },
+            er: {
+                useMaxWidth: true,
+                fontSize: 10
+            }
+        });
+    </script>
+
+    <style>
+        /* ================= PAGE SETUP ================= */
+        @page {
+            size: A4 portrait;
+            margin: 18mm 15mm 18mm 15mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 9.5pt;
+            line-height: 1.55;
+            color: #1e293b;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ================= COVER PAGE ================= */
+        .cover-page {
+            page-break-after: always;
+            break-after: page;
+            height: 252mm;
+            max-height: 252mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10mm 6mm 4mm 6mm;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .cover-top-accent {
+            height: 5px;
+            background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
+            border-radius: 3px;
+            margin-bottom: 18mm;
+        }
+
+        .cover-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10mm;
+        }
+
+        .cover-logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 19px;
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.35);
+        }
+
+        .cover-logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20pt;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+        }
+
+        .cover-logo-badge {
+            background: #ede9fe;
+            color: #6d28d9;
+            font-size: 8pt;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cover-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26pt;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+            letter-spacing: -0.7px;
+            margin: 0 0 6mm 0;
+        }
+
+        .cover-subtitle {
+            font-size: 12pt;
+            color: #475569;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 4mm;
+        }
+
+        .cover-tagline {
+            font-size: 10.5pt;
+            font-style: italic;
+            color: #6366f1;
+            font-weight: 600;
+            margin-bottom: 12mm;
+        }
+
+        .cover-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 16mm;
+        }
+
+        .cover-pill {
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #e2e8f0;
+            font-size: 8pt;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 5px;
+        }
+
+        .cover-pill.highlight {
+            background: #eef2ff;
+            color: #4338ca;
+            border-color: #c7d2fe;
+        }
+
+        .cover-meta-grid {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 14px 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 20px;
+            margin-bottom: 10mm;
+        }
+
+        .cover-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cover-meta-label {
+            font-size: 7pt;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #64748b;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .cover-meta-value {
+            font-size: 9pt;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .cover-footer {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 7.5pt;
+            color: #64748b;
+        }
+
+        /* ================= TABLE OF CONTENTS ================= */
+        .toc-container {
+            page-break-after: always;
+            break-after: page;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 0 0 20px 0;
+        }
+
+        .toc-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14pt;
+            font-weight: 700;
+            color: #0f172a;
+            border-bottom: 2px solid #6366f1;
+            padding-bottom: 6px;
+            margin-top: 0;
+            margin-bottom: 14px;
+        }
+
+        .toc-list {
+            padding-left: 18px;
+            margin: 0;
+            columns: 2;
+            column-gap: 24px;
+        }
+
+        .toc-list > li {
+            font-size: 8.5pt;
+            font-weight: 600;
+            margin-bottom: 7px;
+            break-inside: avoid;
+        }
+
+        .toc-list > li > a {
+            color: #1e293b;
+            text-decoration: none;
+        }
+
+        .toc-list ul {
+            padding-left: 14px;
+            margin: 3px 0 6px 0;
+            columns: 1;
+        }
+
+        .toc-list ul li {
+            font-size: 8pt;
+            font-weight: 400;
+            margin-bottom: 3px;
+        }
+
+        .toc-list ul li a {
+            color: #475569;
+            text-decoration: none;
+        }
+
+        /* ================= HEADINGS ================= */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            color: #0f172a;
+            font-weight: 700;
+            margin-top: 1.6em;
+            margin-bottom: 0.5em;
+            page-break-after: avoid;
+            break-after: avoid;
+        }
+
+        h1 {
+            font-size: 18pt;
+            border-bottom: 1.5px solid #e2e8f0;
+            padding-bottom: 6px;
+            letter-spacing: -0.4px;
+        }
+
+        /* Major chapters start on fresh pages */
+        h2 {
+            font-size: 14pt;
+            color: #0f172a;
+            border-bottom: 1.5px solid #cbd5e1;
+            padding-bottom: 5px;
+            margin-top: 2em;
+            page-break-before: always;
+            break-before: page;
+            letter-spacing: -0.2px;
+        }
+
+        /* Subsections */
+        h3 {
+            font-size: 11.5pt;
+            color: #1e293b;
+            margin-top: 1.3em;
+            letter-spacing: -0.1px;
+        }
+
+        h4 {
+            font-size: 10pt;
+            color: #334155;
+            font-weight: 600;
+            margin-top: 1.1em;
+        }
+
+        /* ================= PARAGRAPHS & LISTS ================= */
+        p {
+            margin-top: 0;
+            margin-bottom: 0.75em;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 0.85em;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.3em;
+        }
+
+        li > p {
+            margin-bottom: 0.2em;
+        }
+
+        /* ================= BLOCKQUOTES & CALLOUTS ================= */
+        blockquote {
+            margin: 12px 0;
+            padding: 8px 14px;
+            background: #f8fafc;
+            border-left: 3.5px solid #6366f1;
+            border-radius: 0 6px 6px 0;
+            color: #334155;
+            font-size: 9pt;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        blockquote p {
+            margin-bottom: 0.3em;
+        }
+
+        blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ================= TABLES ================= */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 16px 0;
+            font-size: 8pt;
+            page-break-inside: auto;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tr {
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        th {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+            text-align: left;
+            padding: 7px 9px;
+            border: 1px solid #cbd5e1;
+            font-family: 'Outfit', sans-serif;
+            font-size: 8pt;
+            letter-spacing: 0.1px;
+        }
+
+        td {
+            padding: 6px 9px;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            vertical-align: top;
+            word-break: break-word;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* ================= CODE & ASCII ART ================= */
+        pre {
+            background: #0f172a;
+            color: #e2e8f0;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 7.4pt;
+            line-height: 1.4;
+            padding: 10px 12px;
+            border-radius: 5px;
+            border: 1px solid #1e293b;
+            overflow-x: auto;
+            margin: 10px 0;
+            page-break-inside: avoid;
+            break-inside: avoid;
+            white-space: pre;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 8pt;
+            background: #f1f5f9;
+            color: #4338ca;
+            padding: 1px 4px;
+            border-radius: 3px;
+            border: 1px solid #e2e8f0;
+        }
+
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+            border: none;
+            font-size: inherit;
+        }
+
+        /* ================= MERMAID DIAGRAMS ================= */
+        .mermaid-card {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            padding: 12px 14px;
+            margin: 16px 0;
+            page-break-inside: avoid;
+            break-inside: avoid;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            text-align: center;
+        }
+
+        .mermaid-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 8pt;
+            font-weight: 700;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 4px;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+        }
+
+        .mermaid svg {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Links */
+        a {
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 18px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- EXECUTIVE COVER PAGE (PAGE 1) -->
+    <div class="cover-page">
+        <div>
+            <div class="cover-top-accent"></div>
+            <div class="cover-brand">
+                <div class="cover-logo-icon">CB</div>
+                <div class="cover-logo-text">CareerBridge AI</div>
+                <span class="cover-logo-badge">Enterprise Edition</span>
+            </div>
+            
+            <h1 class="cover-title">Complete Architecture, Design, & UI Specification</h1>
+            <div class="cover-subtitle">AI-Powered Career Intelligence, Educational Guidance, and Full-Cycle Recruitment Ecosystem</div>
+            <div class="cover-tagline">"Bridge Your Skills. Build Your Tomorrow."</div>
+
+            <div class="cover-pills">
+                <span class="cover-pill highlight">FastAPI v1 Architecture</span>
+                <span class="cover-pill highlight">React 19 + TypeScript</span>
+                <span class="cover-pill highlight">Three.js 3D WebGL Canvas</span>
+                <span class="cover-pill highlight">Deterministic 70/30 Match Engine</span>
+                <span class="cover-pill">SQLAlchemy 2.0 ORM</span>
+                <span class="cover-pill">15 Relational Entities</span>
+                <span class="cover-pill">100% Offline AI Intelligence</span>
+                <span class="cover-pill">17/17 Automated Tests Passing</span>
+            </div>
+        </div>
+
+        <div>
+            <div class="cover-meta-grid">
+                <div class="cover-meta-item">
+                    <span class="cover-meta-label">Course / Project Context</span>
+                    <span class="cover-meta-value">AI Assisted Coding — Final Capstone Project</span>
+                </div>
+                <div class="cover-meta-item">
+                    <span class="cover-meta-label">Document Release Version</span>
+                    <span class="cover-meta-value">Version 2.0.0 (Production Release)</span>
+                </div>
+                <div class="cover-meta-item">
+                    <span class="cover-meta-label">Release Date</span>
+                    <span class="cover-meta-value">October 2026</span>
+                </div>
+                <div class="cover-meta-item">
+                    <span class="cover-meta-label">Target Architecture</span>
+                    <span class="cover-meta-value">Full-Stack Enterprise Web Application</span>
+                </div>
+            </div>
+
+            <div class="cover-footer">
+                <span>CareerBridge AI Platform Documentation</span>
+                <span>Confidential & Academic Release</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- DOCUMENT CONTENT -->
+    <div class="document-content">
+        <div class="toc-container"><h2 class="toc-title">Table of Contents</h2><ol class="toc-list">
+<li><a href="#1-executive-summary--project-vision">Executive Summary &amp; Project Vision</a></li>
+<li><a href="#2-high-level-system-architecture">High-Level System Architecture</a>
+   - 2.1 <a href="#21-system-architecture-diagram">System Architecture Diagram</a>
+   - 2.2 <a href="#22-tier-decomposition--data-flow">Tier Decomposition &amp; Data Flow</a>
+   - 2.3 <a href="#23-dual-database-architecture-sqlite--postgresql">Dual-Database Architecture (SQLite &amp; PostgreSQL)</a></li>
+<li><a href="#3-algorithmic--ai-engine-architecture">Algorithmic &amp; AI Engine Architecture</a>
+   - 3.1 <a href="#31-deterministic-skill-gap--career-intelligence-engine">Deterministic Skill Gap &amp; Career Intelligence Engine</a>
+   - 3.2 <a href="#32-transparent-job-matching-engine-7030-rule--project-bonus">Transparent Job Matching Engine (70/30 Rule + Project Bonus)</a>
+   - 3.3 <a href="#33-ats-resume-nlp-diagnostic-engine">ATS Resume NLP Diagnostic Engine</a>
+   - 3.4 <a href="#34-rubric-grounded-ai-mock-interview-simulator">Rubric-Grounded AI Mock Interview Simulator</a>
+   - 3.5 <a href="#35-contextual-career-assistant-engine-zero-hallucination">Contextual Career Assistant Engine (Zero-Hallucination)</a></li>
+<li><a href="#4-relational-data-models--database-schema">Relational Data Models &amp; Database Schema</a>
+   - 4.1 <a href="#41-entity-relationship-diagram">Entity Relationship Diagram</a>
+   - 4.2 <a href="#42-complete-schema-specifications-15-relational-tables">Complete Schema Specifications (15 Relational Tables)</a></li>
+<li><a href="#5-backend-api-specification-fastapi-v1">Backend API Specification (FastAPI v1)</a>
+   - 5.1 <a href="#51-core-configuration--security-framework">Core Configuration &amp; Security Framework</a>
+   - 5.2 <a href="#52-restful-domain-routers--endpoints">RESTful Domain Routers &amp; Endpoints</a></li>
+<li><a href="#6-frontend-architecture--client-state">Frontend Architecture &amp; Client State</a>
+   - 6.1 <a href="#61-react-19--typescript--vite-architecture">React 19 + TypeScript + Vite Architecture</a>
+   - 6.2 <a href="#62-routing-hierarchy--route-guards">Routing Hierarchy &amp; Route Guards</a>
+   - 6.3 <a href="#63-global-state-management-authcontext--toastcontext">Global State Management (AuthContext &amp; ToastContext)</a>
+   - 6.4 <a href="#64-resilient-api-layer--offline-demo-data-fallback">Resilient API Layer &amp; Offline Demo Data Fallback</a></li>
+<li><a href="#7-visual-design-system--ui-architecture">Visual Design System &amp; UI Architecture</a>
+   - 7.1 <a href="#71-design-philosophy-cinematic-cybernetic-glassmorphism">Design Philosophy: Cinematic Cybernetic Glassmorphism</a>
+   - 7.2 <a href="#72-design-tokens-colors--css-variables">Design Tokens, Colors &amp; CSS Variables</a>
+   - 7.3 <a href="#73-typography-hierarchy--font-pairing">Typography Hierarchy &amp; Font Pairing</a>
+   - 7.4 <a href="#74-glassmorphic-panels--surface-elevation">Glassmorphic Panels &amp; Surface Elevation</a>
+   - 7.5 <a href="#75-sleek-top-navigation-bar-redesign">Sleek Top Navigation Bar Redesign</a></li>
+<li><a href="#8-3d-webgl-journey-canvas-threejs-engine">3D WebGL Journey Canvas (Three.js Engine)</a>
+   - 8.1 <a href="#81-webgl-pipeline--continuous-spline-path">WebGL Pipeline &amp; Continuous Spline Path</a>
+   - 8.2 <a href="#82-scroll-synchronized-camera-choreography">Scroll-Synchronized Camera Choreography</a>
+   - 8.3 <a href="#83-interactive-visual-objects--chapter-themes">Interactive Visual Objects &amp; Chapter Themes</a>
+   - 8.4 <a href="#84-performance--accessibility-adaptations">Performance &amp; Accessibility Adaptations</a></li>
+<li><a href="#9-comprehensive-page-by-page-uiux-specifications">Comprehensive Page-by-Page UI/UX Specifications</a>
+   - 9.1 <a href="#91-the-master-3d-landing-page-6-chapters">The Master 3D Landing Page (6 Chapters)</a>
+   - 9.2 <a href="#92-public--authentication-pages">Public &amp; Authentication Pages</a>
+   - 9.3 <a href="#93-student-portal-16-sub-pages">Student Portal (16 Sub-Pages)</a>
+   - 9.4 <a href="#94-recruiter-portal-8-sub-pages">Recruiter Portal (8 Sub-Pages)</a></li>
+<li><a href="#10-testing-security--deployment-guide">Testing, Security &amp; Deployment Guide</a><ul>
+<li>10.1 <a href="#101-backend-automated-test-suite-pytest">Backend Automated Test Suite (Pytest)</a></li>
+<li>10.2 <a href="#102-frontend-build-verification">Frontend Build Verification</a></li>
+<li>10.3 <a href="#103-security-auditing--privacy-boundaries">Security Auditing &amp; Privacy Boundaries</a></li>
+<li>10.4 <a href="#104-local--production-deployment-setup">Local &amp; Production Deployment Setup</a></li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="1-executive-summary-project-vision">1. Executive Summary &amp; Project Vision</h2>
+<h3 id="11-the-problem-space">1.1 The Problem Space</h3>
+<p>In the modern technical recruitment landscape, both students and recruiters face severe systemic disconnects:
+- <strong>Students</strong> lack actionable clarity regarding the exact skills demanded by industry roles. Traditional job descriptions are verbose, vague, and uncalibrated, leaving candidates unsure whether their academic preparation qualifies them for entry-level or junior engineering positions.
+- <strong>Recruitment Platforms</strong> rely on black-box keyword matching algorithms that penalize qualified candidates due to arbitrary keyword phrasing or provide candidates with zero transparent feedback when an application is rejected.
+- <strong>Skill Acquisition</strong> is fragmented. Students study disparate courses without an integrated roadmap that connects self-study directly to verified job openings and interactive mock interview evaluation.</p>
+<h3 id="12-the-careerbridge-solution">1.2 The CareerBridge Solution</h3>
+<p><strong>CareerBridge AI</strong> is an enterprise-grade, full-stack career intelligence, educational guidance, and transparent recruitment platform designed to eliminate the ambiguity between student capability and industry demand.</p>
+<div class="codehilite"><pre><span></span><code><span class="err">┌────────────────────────────────────────────────────────────────────────┐</span>
+<span class="err">│</span><span class="w">                        </span><span class="nx">CAREERBRIDGE</span><span class="w"> </span><span class="nx">AI</span><span class="w"> </span><span class="nx">ECOSYSTEM</span><span class="w">                       </span><span class="err">│</span>
+<span class="err">├───────────────────────────────┬────────────────────────────────────────┤</span>
+<span class="err">│</span><span class="w">     </span><span class="nx">STUDENT</span><span class="w"> </span><span class="nx">CAPABILITIES</span><span class="w">      </span><span class="err">│</span><span class="w">         </span><span class="nx">RECRUITER</span><span class="w"> </span><span class="nx">CAPABILITIES</span><span class="w">         </span><span class="err">│</span>
+<span class="err">├───────────────────────────────┼────────────────────────────────────────┤</span>
+<span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">Verified</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">Self</span><span class="o">-</span><span class="nx">Reported</span><span class="w">    </span><span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">Company</span><span class="w"> </span><span class="nx">Profile</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nx">Brand</span><span class="w"> </span><span class="nx">Showcase</span><span class="w">     </span><span class="err">│</span>
+<span class="err">│</span><span class="w">   </span><span class="nx">Skill</span><span class="w"> </span><span class="nx">Competencies</span><span class="w">          </span><span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">Multi</span><span class="o">-</span><span class="nx">Criteria</span><span class="w"> </span><span class="nx">Job</span><span class="w"> </span><span class="nx">Posting</span><span class="w"> </span><span class="nx">Engine</span><span class="w">    </span><span class="err">│</span>
+<span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">Deterministic</span><span class="w"> </span><span class="nx">Skill</span><span class="o">-</span><span class="nx">Gap</span><span class="w">     </span><span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">Transparent</span><span class="w"> </span><span class="nx">Candidate</span><span class="w"> </span><span class="nx">Pipeline</span><span class="w">       </span><span class="err">│</span>
+<span class="err">│</span><span class="w">   </span><span class="nx">Radar</span><span class="w"> </span><span class="nx">Evaluation</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="w"> </span><span class="nx">Axes</span><span class="p">)</span><span class="w">   </span><span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">Application</span><span class="w"> </span><span class="nx">Status</span><span class="w"> </span><span class="nx">Transitions</span><span class="w">       </span><span class="err">│</span>
+<span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">Dynamic</span><span class="w"> </span><span class="nx">Milestone</span><span class="w"> </span><span class="nx">Roadmaps</span><span class="w">  </span><span class="err">│</span><span class="w">   </span><span class="p">(</span><span class="nx">Submitted</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="nx">Shortlist</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="nx">Offered</span><span class="p">)</span><span class="w">   </span><span class="err">│</span>
+<span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">ATS</span><span class="w"> </span><span class="nx">Resume</span><span class="w"> </span><span class="nx">Diagnostics</span><span class="w">      </span><span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">Skill</span><span class="o">-</span><span class="nx">Based</span><span class="w"> </span><span class="nx">Talent</span><span class="w"> </span><span class="nx">Search</span><span class="w">            </span><span class="err">│</span>
+<span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">AI</span><span class="w"> </span><span class="nx">Mock</span><span class="w"> </span><span class="nx">Interview</span><span class="w"> </span><span class="nx">Rubrics</span><span class="w">   </span><span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">Market</span><span class="w"> </span><span class="nx">Skill</span><span class="w"> </span><span class="nx">Demand</span><span class="w"> </span><span class="nx">Intelligence</span><span class="w">     </span><span class="err">│</span>
+<span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">Explainable</span><span class="w"> </span><span class="mi">70</span><span class="o">/</span><span class="mi">30</span><span class="w"> </span><span class="nx">Job</span><span class="w"> </span><span class="nx">Match</span><span class="w"> </span><span class="err">│</span><span class="w"> </span><span class="err">•</span><span class="w"> </span><span class="nx">Privacy</span><span class="o">-</span><span class="nx">Guarded</span><span class="w"> </span><span class="nx">Direct</span><span class="w"> </span><span class="nx">Outreach</span><span class="w">      </span><span class="err">│</span>
+<span class="err">└───────────────────────────────┴────────────────────────────────────────┘</span>
+</code></pre></div>
+
+<h3 id="13-key-innovations">1.3 Key Innovations</h3>
+<ol>
+<li><strong>Explainable Deterministic Matching</strong>: Unlike opaque scoring models, CareerBridge utilizes a deterministic matching engine that breaks down candidate-job alignment into <strong>70% Required Skills</strong>, <strong>30% Preferred Skills</strong>, and a <strong>+5% Project Evidence Bonus</strong>.</li>
+<li><strong>Local Intelligent AI Architecture</strong>: The platform operates with 100% offline intelligence out-of-the-box (zero mandatory external API dependencies) via deterministic mathematical algorithms, heuristic NLP, and curated question rubrics, while maintaining plug-and-play compatibility with Gemini, OpenAI, and Anthropic.</li>
+<li><strong>Immersive 3D WebGL Storytelling</strong>: A custom Three.js continuous spline journey canvas seamlessly guides first-time visitors from initial skill exploration down to career triumph with smooth scroll-coupled camera interpolation.</li>
+<li><strong>Cinematic Dark Glassmorphism UI</strong>: High-contrast, accessibility-tested visual tokens (<code>#05070D</code> background, frosted glass panels with 24px backdrop blur, vibrant lavender/cyan accents) deliver an exceptionally modern desktop experience.</li>
+</ol>
+<hr />
+<h2 id="2-high-level-system-architecture">2. High-Level System Architecture</h2>
+<h3 id="21-system-architecture-diagram">2.1 System Architecture Diagram</h3>
+
+        <div class="mermaid-card arch-card">
+            <div class="mermaid-header">High-Level System Architecture Diagram — 4-Tier Full-Stack Decomposition</div>
+            <div class="mermaid">graph TB
+    subgraph Client Tier [Frontend Layer — React 19 + TypeScript + Vite]
+        UI_Landing[Master 3D Landing Page]
+        UI_Student[Student Portal — 16 Views]
+        UI_Recruiter[Recruiter Portal — 8 Views]
+        Canvas3D[Three.js WebGL Journey Canvas]
+        Router[React Router DOM v7]
+        AuthCtx[Auth Context &amp; JWT Token Storage]
+        ToastCtx[Toast Notification Context]
+        ApiClient[Typed API Client with Offline Fallback]
+        UI_Landing &amp; UI_Student &amp; UI_Recruiter --&gt; Router
+        Router --&gt; AuthCtx &amp; ToastCtx
+        AuthCtx &amp; ToastCtx --&gt; ApiClient
+    end
+
+    subgraph Gateway Tier [API Gateway &amp; Reverse Proxy]
+        ViteProxy[Vite Dev Server Proxy :5173]
+        CORS[FastAPI CORS Middleware]
+        ViteProxy --&gt; CORS
+    end
+
+    subgraph Backend Tier [Application Layer — FastAPI &amp; Python 3.13]
+        subgraph Auth_Module [Identity &amp; Profiles]
+            AuthRouter[Auth &amp; RBAC Router]
+            StudentRouter[Student Profiles Router]
+            RecruiterRouter[Recruiter Pipeline Router]
+        end
+
+        subgraph Career_Module [Career &amp; Matching]
+            CareerRouter[Careers &amp; Gaps Router]
+            RoadmapRouter[Dynamic Roadmaps Router]
+            JobRouter[Jobs &amp; Matching Router]
+            AppRouter[Applications Router]
+        end
+
+        subgraph AI_Module [AI Diagnostics &amp; Mentorship]
+            ResumeRouter[Resume Diagnostics Router]
+            InterviewRouter[Mock Interviews Router]
+            AssistantRouter[Grounded Assistant Router]
+            AnalyticsRouter[Market Trends Router]
+        end
+
+        subgraph Services [Core AI Engines &amp; Business Services]
+            CI_Service[CareerIntelligenceService]
+            ME_Engine[JobMatchingEngine]
+            AI_Service[Resume NLP &amp; Interview Evaluators]
+            RM_Service[Roadmap &amp; Assistant Services]
+        end
+    end
+
+    subgraph Data Tier [Persistence Layer]
+        SQLAlchemy[SQLAlchemy 2.0 ORM Engine]
+        Alembic[Alembic Migrations Engine]
+        SQLite[(Local SQLite: careerbridge.db)]
+        PostgreSQL[(Production PostgreSQL)]
+        SQLAlchemy --&gt; SQLite &amp; PostgreSQL
+    end
+
+    ApiClient --&gt; ViteProxy
+    CORS --&gt; Auth_Module &amp; Career_Module &amp; AI_Module
+    Career_Module --&gt; CI_Service &amp; ME_Engine
+    AI_Module --&gt; AI_Service &amp; RM_Service
+    Services --&gt; SQLAlchemy
+    Alembic -.-&gt; SQLAlchemy</div>
+        </div>
+        
+
+<h3 id="22-tier-decomposition-data-flow">2.2 Tier Decomposition &amp; Data Flow</h3>
+<h4 id="client-tier">Client Tier</h4>
+<p>Built with modern web technologies:
+- <strong>React 19.2.8</strong> featuring concurrent rendering primitives.
+- <strong>TypeScript 5.8</strong> guaranteeing compile-time type safety across all domain entities.
+- <strong>Vite 8.3</strong> delivering instant hot module replacement (HMR) and sub-second builds.
+- <strong>Three.js 0.174</strong> managing the background 3D canvas with custom geometries, ambient particle fields, and mathematical spline curves.</p>
+<h4 id="api-gateway-communication-protocol">API Gateway &amp; Communication Protocol</h4>
+<ul>
+<li>Frontend and backend communicate via <strong>asynchronous RESTful JSON APIs</strong> prefixed with <code>/api/v1</code>.</li>
+<li>In development, Vite's internal proxy maps browser requests from <code>http://localhost:5173/api</code> directly to <code>http://127.0.0.1:8000</code>, resolving cross-origin credential issues and Windows IPv6/IPv4 address resolution mismatches.</li>
+<li>All secure endpoints require the <code>Authorization: Bearer &lt;JWT&gt;</code> header.</li>
+</ul>
+<h4 id="application-tier">Application Tier</h4>
+<p>Powered by <strong>Python 3.13</strong> and <strong>FastAPI</strong>:
+- Asynchronous route handlers (<code>async def</code> and synchronous <code>def</code> where database I/O is offloaded to worker threads).
+- <strong>Pydantic v2</strong> validation models with <code>ConfigDict(from_attributes=True)</code> validating inbound JSON bodies and outbound serialization.
+- Strict Role-Based Access Control (<code>UserRole.STUDENT</code>, <code>UserRole.RECRUITER</code>, <code>UserRole.ADMIN</code>).</p>
+<h4 id="persistence-tier">Persistence Tier</h4>
+<ul>
+<li><strong>SQLAlchemy 2.0 ORM</strong> employing modern declarative base syntax (<code>Mapped[T]</code> and <code>mapped_column()</code>).</li>
+<li>Session management through a scoped generator <code>get_db()</code> with automatic commit/rollback and connection pooling.</li>
+</ul>
+<h3 id="23-dual-database-architecture-sqlite-postgresql">2.3 Dual-Database Architecture (SQLite &amp; PostgreSQL)</h3>
+<p>To enable frictionless academic evaluation and seamless enterprise deployment:
+1. <strong>Local Zero-Setup Mode (Default)</strong>: Utilizes SQLite (<code>sqlite:///./careerbridge.db</code>). Alembic migrations operate with <code>render_as_batch=True</code> to support SQLite schema alterations without dropping tables.
+2. <strong>Production Mode</strong>: Switching requires only setting <code>DATABASE_URL=postgresql+psycopg2://user:pass@host:5432/careerbridge</code> in <code>.env</code>. The ORM models and Alembic migration scripts are 100% dialect-agnostic.</p>
+<hr />
+<h2 id="3-algorithmic-ai-engine-architecture">3. Algorithmic &amp; AI Engine Architecture</h2>
+<h3 id="31-deterministic-skill-gap-career-intelligence-engine">3.1 Deterministic Skill Gap &amp; Career Intelligence Engine</h3>
+<p>Located in <code>backend/app/services/career_intelligence.py</code>.</p>
+<h4 id="core-mathematical-formula">Core Mathematical Formula</h4>
+<p>The alignment score between a student profile and a target career role is computed deterministically:</p>
+<p>$$\text{Alignment Score} = \left( \frac{\sum_{i=1}^{N} \min(S_i, R_i) \cdot W_i \cdot V_i}{\sum_{i=1}^{N} R_i \cdot W_i} \right) \times 100$$</p>
+<p>Where:
+- $S_i \in [1, 5]$: Student's demonstrated proficiency in skill $i$ (defaults to $0$ if unacquired).
+- $R_i \in [1, 5]$: Required proficiency level specified for the target role.
+- $W_i \in [0.8, 1.5]$: Importance weight of skill $i$ (Critical skills = $1.2 - 1.5$, Recommended = $0.8 - 1.0$).
+- $V_i$: Verification factor:
+  - $V_i = 1.00$ for verified skills (demonstrated via linked GitHub project or completed platform assessment).
+  - $V_i = 0.85$ for unverified self-reported skills.
+  - $V_i = 0.70$ for unassessed baseline competencies.</p>
+<h4 id="6-axis-radar-metric-distribution">6-Axis Radar Metric Distribution</h4>
+<p>The engine projects the student's competencies onto six standard industry dimensions:
+1. <strong>Algorithms &amp; Computational Foundations</strong>
+2. <strong>Systems Architecture &amp; Low-Level Design</strong>
+3. <strong>Machine Learning &amp; Statistical Modeling</strong>
+4. <strong>Data Engineering &amp; Relational Pipelines</strong>
+5. <strong>Software Engineering &amp; Component Architecture</strong>
+6. <strong>DevOps, Cloud &amp; Production Infrastructure</strong></p>
+<p>Each axis computes the ratio of student capability against role expectations, returning <code>current</code>, <code>required</code>, and <code>cohort_average</code> values for the interactive radar visualization.</p>
+<h4 id="skill-gap-classification">Skill Gap Classification</h4>
+<ul>
+<li><strong>Optimal / Proficient</strong> ($\text{Gap} \le 10\%$): Marked as verified student strength.</li>
+<li><strong>Moderate / Needs Improvement</strong> ($10\% &lt; \text{Gap} \le 30\%$): Targeted for milestone practice.</li>
+<li><strong>Critical Gap</strong> ($\text{Gap} &gt; 30\%$): Prioritized at the top of the student's dynamic learning roadmap.</li>
+</ul>
+<hr />
+<h3 id="32-transparent-job-matching-engine-7030-rule-project-bonus">3.2 Transparent Job Matching Engine (70/30 Rule + Project Bonus)</h3>
+<p>Located in <code>backend/app/services/matching_engine.py</code>.</p>
+<p>Unlike opaque black-box recruiters, CareerBridge implements a mathematically transparent matching model:</p>
+<div class="codehilite"><pre><span></span><code>┌─────────────────────────────────────────────────────────────────┐
+│                    TRANSPARENT MATCH FORMULA                    │
+├────────────────────────────────┬────────────────────────────────┤
+│ Component                      │ Maximum Weight                 │
+├────────────────────────────────┼────────────────────────────────┤
+│ Required Skills Match          │ 70.0%                          │
+│ Preferred Skills Match         │ 30.0%                          │
+│ Project Evidence Bonus         │ +5.0%                          │
+├────────────────────────────────┼────────────────────────────────┤
+│ TOTAL MAXIMUM MATCH SCORE      │ 100.0% (Clamped)               │
+└────────────────────────────────┴────────────────────────────────┘
+</code></pre></div>
+
+<h4 id="algorithmic-procedure">Algorithmic Procedure</h4>
+<ol>
+<li><strong>String Normalization</strong>: Skill names are normalized (lowercased, hyphens and slashes replaced with spaces) to ensure resilient matching across naming conventions (e.g., <code>react.js</code> matches <code>React</code>, <code>ci/cd</code> matches <code>CI-CD</code>).</li>
+<li><strong>Competency Ingestion</strong>: The engine compiles all student skills and scans <code>student_projects</code> for demonstrated technologies and tools.</li>
+<li><strong>Required Skills Ratio</strong>:
+   $$\text{Req Score} = \left( \frac{\text{Matched Required Skills}}{\max(1, \text{Total Required Skills})} \right) \times 70.0$$</li>
+<li><strong>Preferred Skills Ratio</strong>:
+   $$\text{Pref Score} = \left( \frac{\text{Matched Preferred Skills}}{\max(1, \text{Total Preferred Skills})} \right) \times 30.0$$</li>
+<li><strong>Project Evidence Bonus</strong>: If the student has at least one repository or live project link matching any required skill, an additional $+5.0\%$ is added.</li>
+<li><strong>Explainable Breakdown</strong>: The engine returns explicit lists of <code>matched_skills</code>, <code>missing_critical_skills</code>, and <code>recommended_to_learn</code> directly to the client interface.</li>
+</ol>
+<hr />
+<h3 id="33-ats-resume-nlp-diagnostic-engine">3.3 ATS Resume NLP Diagnostic Engine</h3>
+<p>Located in <code>backend/app/services/resume_service.py</code>.</p>
+<h4 id="pipeline-architecture">Pipeline Architecture</h4>
+<ol>
+<li><strong>Safe Byte Ingestion</strong>: Accepts PDF or TXT uploads. PyPDF iterates through document pages, extracting plaintext while handling corrupted byte buffers via fallback UTF-8 decoding.</li>
+<li><strong>Lexical Skill Extraction</strong>: Matches document text against the platform's relational skill catalogue using regular expression word boundaries (<code>\b&lt;skill&gt;\b</code>).</li>
+<li><strong>Target Role Comparative Diagnostics</strong>: Compares identified skills against the requested target role's critical requirements, calculating a <strong>Resume Readiness Score (0–100)</strong>:
+   - Found Skills Ratio: up to 50 points
+   - Absence of Missing Critical Requirements: up to 30 points
+   - Structural Quality &amp; Impact Action Verbs: up to 20 points</li>
+<li><strong>Action-Verb Enhancement Suggestions</strong>: Scans candidate bullet points for weak verbs (e.g., <em>"helped with"</em>, <em>"worked on"</em>, <em>"handled"</em>) and suggests high-impact alternatives (e.g., <em>"Architected"</em>, <em>"Spearheaded"</em>, <em>"Optimized"</em>, <em>"Quantified"</em>).</li>
+</ol>
+<hr />
+<h3 id="34-rubric-grounded-ai-mock-interview-simulator">3.4 Rubric-Grounded AI Mock Interview Simulator</h3>
+<p>Located in <code>backend/app/services/interview_service.py</code>.</p>
+<h4 id="question-bank-rubric-design">Question Bank &amp; Rubric Design</h4>
+<p>The simulator provides structured questions across four technical specializations:
+1. <strong>AI / Machine Learning Engineer</strong> (Self-attention vs cross-attention, gradient explosion, loss divergence diagnostics).
+2. <strong>Full-Stack Systems Engineer</strong> (ACID transactions vs eventual consistency, race condition prevention, React 19 server components).
+3. <strong>Data Scientist &amp; Quantitative Analyst</strong> (A/B test sample size formulas, feature collinearity, ROC-AUC calibration).
+4. <strong>Cloud &amp; Distributed Systems Architect</strong> (CAP theorem trade-offs, Raft consensus elections, container security isolation).</p>
+<h4 id="4-dimensional-evaluation-rubric">4-Dimensional Evaluation Rubric</h4>
+<p>Student responses are graded across four standardized criteria:
+1. <strong>Technical Accuracy (0–100)</strong>: Correctness of core architectural assertions and terminology.
+2. <strong>Reasoning &amp; Depth (0–100)</strong>: Ability to substantiate claims with first-principles reasoning.
+3. <strong>Practical Trade-offs (0–100)</strong>: Awareness of computational cost, latency, scalability, and maintainability.
+4. <strong>Clarity &amp; Communication (0–100)</strong>: Conciseness, structure, and professional delivery.</p>
+<p>The overall session score is recorded in <code>interview_sessions</code> alongside detailed feedback and model benchmark answers.</p>
+<hr />
+<h3 id="35-contextual-career-assistant-engine-zero-hallucination">3.5 Contextual Career Assistant Engine (Zero-Hallucination)</h3>
+<p>Located in <code>backend/app/services/assistant_service.py</code>.</p>
+<h4 id="grounded-knowledge-base">Grounded Knowledge Base</h4>
+<p>To prevent AI hallucinations, the assistant is deeply integrated with the platform's active database:
+- Reads the logged-in student's target role, verified skills, and roadmap progress.
+- Queries active job listings posted by verified employers.
+- When answering career queries, references real open positions, actual required competencies, and specific platform learning resources.
+- If an external LLM (Gemini, OpenAI, Anthropic) is configured via <code>backend/.env</code>, prompts are injected with grounded JSON context. If the provider times out or fails, the engine falls back to local intelligent generation seamlessly.</p>
+<hr />
+<h2 id="4-relational-data-models-database-schema">4. Relational Data Models &amp; Database Schema</h2>
+<h3 id="41-entity-relationship-diagram">4.1 Entity Relationship Diagram</h3>
+
+        <div class="mermaid-card erd-card">
+            <div class="mermaid-header">Entity Relationship Diagram — 15 Relational Tables & Schema Cardinality</div>
+            <div class="mermaid">erDiagram
+    USERS {
+        int id PK
+        string email UK
+        string hashed_password
+        enum role
+        boolean is_active
+        datetime created_at
+    }
+    STUDENT_PROFILES {
+        int id PK
+        int user_id FK
+        string full_name
+        string university
+        string degree
+        float readiness_score
+    }
+    RECRUITER_PROFILES {
+        int id PK
+        int user_id FK
+        int company_id FK
+        string full_name
+        string job_title
+    }
+    COMPANIES {
+        int id PK
+        string name UK
+        string industry
+        string location
+        boolean is_verified
+    }
+    SKILLS {
+        int id PK
+        string name UK
+        string category
+    }
+    STUDENT_SKILLS {
+        int id PK
+        int student_id FK
+        int skill_id FK
+        int proficiency
+        boolean is_verified
+    }
+    CAREER_ROLES {
+        int id PK
+        string title
+        string slug UK
+        string category
+    }
+    ROLE_SKILL_REQUIREMENTS {
+        int id PK
+        int role_id FK
+        int skill_id FK
+        int required_proficiency
+        float weight
+    }
+    ROADMAPS {
+        int id PK
+        int student_id FK
+        string target_role
+        int progress_percent
+    }
+    ROADMAP_MILESTONES {
+        int id PK
+        int roadmap_id FK
+        int step_number
+        string status
+    }
+    JOBS {
+        int id PK
+        int recruiter_id FK
+        string title
+        string workplace_type
+        boolean is_active
+    }
+    APPLICATIONS {
+        int id PK
+        int job_id FK
+        int student_id FK
+        enum status
+        datetime applied_at
+    }
+    INTERVIEW_SESSIONS {
+        int id PK
+        int student_id FK
+        string target_role
+        float overall_score
+    }
+    INTERVIEW_QUESTIONS {
+        int id PK
+        int session_id FK
+        float score
+    }
+    ASSISTANT_CONVERSATIONS {
+        int id PK
+        int user_id FK
+        string title
+    }
+    ASSISTANT_MESSAGES {
+        int id PK
+        int conversation_id FK
+        string sender
+    }
+
+    USERS ||--o| STUDENT_PROFILES : "has"
+    USERS ||--o| RECRUITER_PROFILES : "has"
+    USERS ||--o{ ASSISTANT_CONVERSATIONS : "initiates"
+
+    RECRUITER_PROFILES }o--|| COMPANIES : "employed by"
+    RECRUITER_PROFILES ||--o{ JOBS : "posts"
+
+    STUDENT_PROFILES ||--o{ STUDENT_SKILLS : "holds"
+    STUDENT_PROFILES ||--o{ ROADMAPS : "follows"
+    STUDENT_PROFILES ||--o{ APPLICATIONS : "submits"
+    STUDENT_PROFILES ||--o{ INTERVIEW_SESSIONS : "attends"
+
+    SKILLS ||--o{ STUDENT_SKILLS : "master of"
+    SKILLS ||--o{ ROLE_SKILL_REQUIREMENTS : "governs"
+    CAREER_ROLES ||--o{ ROLE_SKILL_REQUIREMENTS : "specifies"
+
+    ROADMAPS ||--o{ ROADMAP_MILESTONES : "contains"
+    JOBS ||--o{ APPLICATIONS : "receives"
+    INTERVIEW_SESSIONS ||--o{ INTERVIEW_QUESTIONS : "evaluates"
+    ASSISTANT_CONVERSATIONS ||--o{ ASSISTANT_MESSAGES : "stores" </div>
+        </div>
+        
+
+<h3 id="42-complete-schema-specifications-15-relational-tables">4.2 Complete Schema Specifications (15 Relational Tables)</h3>
+<h4 id="1-users-table">1. <code>users</code> Table</h4>
+<p>Stores primary identity and authentication credentials.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Constraints</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">PK, Auto-increment</td>
+<td style="text-align: left;">Unique user identity</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>email</code></td>
+<td style="text-align: left;">String(255)</td>
+<td style="text-align: left;">Unique, Not Null, Indexed</td>
+<td style="text-align: left;">Login email address</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>hashed_password</code></td>
+<td style="text-align: left;">String(255)</td>
+<td style="text-align: left;">Not Null</td>
+<td style="text-align: left;">Salted Bcrypt password hash</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>role</code></td>
+<td style="text-align: left;">Enum</td>
+<td style="text-align: left;">Not Null, Default: <code>STUDENT</code></td>
+<td style="text-align: left;"><code>STUDENT</code>, <code>RECRUITER</code>, <code>ADMIN</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>is_active</code></td>
+<td style="text-align: left;">Boolean</td>
+<td style="text-align: left;">Default: <code>True</code></td>
+<td style="text-align: left;">Account activation state</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>created_at</code></td>
+<td style="text-align: left;">DateTime</td>
+<td style="text-align: left;">Default: <code>utcnow()</code></td>
+<td style="text-align: left;">Account creation timestamp</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>updated_at</code></td>
+<td style="text-align: left;">DateTime</td>
+<td style="text-align: left;">OnUpdate: <code>utcnow()</code></td>
+<td style="text-align: left;">Last profile update timestamp</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-student_profiles-table">2. <code>student_profiles</code> Table</h4>
+<p>Stores extended academic and career readiness information.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Constraints</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">PK, Auto-increment</td>
+<td style="text-align: left;">Unique student profile ID</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>user_id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">FK(<code>users.id</code>), Unique, Not Null</td>
+<td style="text-align: left;">Parent user account</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>full_name</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Not Null</td>
+<td style="text-align: left;">Candidate display name</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>avatar_url</code></td>
+<td style="text-align: left;">String(512)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Profile image URI</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>university</code></td>
+<td style="text-align: left;">String(255)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">University or institution</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>degree</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">e.g., Bachelor of Technology</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>branch</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">e.g., Computer Science &amp; AI</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>academic_year</code></td>
+<td style="text-align: left;">String(64)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">e.g., 3rd Year / Junior</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>graduation_year</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Projected graduation year</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>location</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Candidate city / region</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>target_role</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Primary targeted career track</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>bio</code></td>
+<td style="text-align: left;">Text</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Professional summary</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>github_url</code></td>
+<td style="text-align: left;">String(255)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">GitHub profile link</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>portfolio_url</code></td>
+<td style="text-align: left;">String(255)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Personal portfolio URL</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>linkedin_url</code></td>
+<td style="text-align: left;">String(255)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">LinkedIn profile link</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>career_readiness_score</code></td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">Default: <code>0.0</code></td>
+<td style="text-align: left;">Cached aggregate readiness score</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-recruiter_profiles-table">3. <code>recruiter_profiles</code> Table</h4>
+<p>Stores recruiter organizational association and contact info.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Constraints</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">PK, Auto-increment</td>
+<td style="text-align: left;">Unique recruiter profile ID</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>user_id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">FK(<code>users.id</code>), Unique, Not Null</td>
+<td style="text-align: left;">Parent user account</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>company_id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">FK(<code>companies.id</code>), Nullable</td>
+<td style="text-align: left;">Associated employer organization</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>full_name</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Not Null</td>
+<td style="text-align: left;">Recruiter display name</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>job_title</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">e.g., Senior Technical Recruiter</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>department</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">e.g., Engineering Talent Acquisition</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>phone_number</code></td>
+<td style="text-align: left;">String(32)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Work contact telephone</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-companies-table">4. <code>companies</code> Table</h4>
+<p>Represents employer organizations posting roles on CareerBridge.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Constraints</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">PK, Auto-increment</td>
+<td style="text-align: left;">Unique company ID</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;">String(255)</td>
+<td style="text-align: left;">Unique, Not Null</td>
+<td style="text-align: left;">Legal company name</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>logo_url</code></td>
+<td style="text-align: left;">String(512)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Company brand logo URI</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>website_url</code></td>
+<td style="text-align: left;">String(255)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Official company URL</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>industry</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Industry sector (e.g., AI Research)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>company_size</code></td>
+<td style="text-align: left;">String(64)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">e.g., 500-1,000 Employees</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>location</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Headquarters location</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>description</code></td>
+<td style="text-align: left;">Text</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Overview of company mission</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>is_verified</code></td>
+<td style="text-align: left;">Boolean</td>
+<td style="text-align: left;">Default: <code>False</code></td>
+<td style="text-align: left;">Platform verification badge</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5-skills-table">5. <code>skills</code> Table</h4>
+<p>Master taxonomy of engineering and computational skills.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Constraints</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">PK, Auto-increment</td>
+<td style="text-align: left;">Unique skill ID</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Unique, Not Null</td>
+<td style="text-align: left;">Canonical skill name</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>category</code></td>
+<td style="text-align: left;">String(64)</td>
+<td style="text-align: left;">Not Null</td>
+<td style="text-align: left;">e.g., Deep Learning, Web Systems</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>description</code></td>
+<td style="text-align: left;">Text</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Mathematical &amp; practical definition</td>
+</tr>
+</tbody>
+</table>
+<h4 id="6-student_skills-table">6. <code>student_skills</code> Table</h4>
+<p>Association table linking students to acquired skills with evidence.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Constraints</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">PK, Auto-increment</td>
+<td style="text-align: left;">Unique student-skill record</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>student_id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">FK(<code>student_profiles.id</code>), Not Null</td>
+<td style="text-align: left;">Target student profile</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>skill_id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">FK(<code>skills.id</code>), Not Null</td>
+<td style="text-align: left;">Associated master skill</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>proficiency</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">Not Null, Default: <code>1</code></td>
+<td style="text-align: left;">Level scale from 1 (Novice) to 5 (Master)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>is_verified</code></td>
+<td style="text-align: left;">Boolean</td>
+<td style="text-align: left;">Default: <code>False</code></td>
+<td style="text-align: left;">Verified through project or test</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>source</code></td>
+<td style="text-align: left;">String(64)</td>
+<td style="text-align: left;">Default: <code>"self_reported"</code></td>
+<td style="text-align: left;">Evidence source (project/assessment)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>evidence_url</code></td>
+<td style="text-align: left;">String(512)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Direct GitHub repo or commit link</td>
+</tr>
+</tbody>
+</table>
+<h4 id="7-career_roles-table">7. <code>career_roles</code> Table</h4>
+<p>Curated industry target roles.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Constraints</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">PK, Auto-increment</td>
+<td style="text-align: left;">Unique career role ID</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>title</code></td>
+<td style="text-align: left;">String(128)</td>
+<td style="text-align: left;">Not Null</td>
+<td style="text-align: left;">e.g., AI / Machine Learning Engineer</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>slug</code></td>
+<td style="text-align: left;">String(64)</td>
+<td style="text-align: left;">Unique, Not Null</td>
+<td style="text-align: left;">URL slug (e.g., <code>ai-ml</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>category</code></td>
+<td style="text-align: left;">String(64)</td>
+<td style="text-align: left;">Not Null</td>
+<td style="text-align: left;">Industry sector</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>description</code></td>
+<td style="text-align: left;">Text</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">Role overview</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>growth_outlook</code></td>
+<td style="text-align: left;">String(64)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">e.g., +34% YoY Hiring Volume</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>avg_salary_range</code></td>
+<td style="text-align: left;">String(64)</td>
+<td style="text-align: left;">Nullable</td>
+<td style="text-align: left;">e.g., $125,000 - $185,000</td>
+</tr>
+</tbody>
+</table>
+<h4 id="8-role_skill_requirements-table">8. <code>role_skill_requirements</code> Table</h4>
+<p>Skill prerequisites demanded by specific career roles.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Constraints</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">PK, Auto-increment</td>
+<td style="text-align: left;">Unique requirement record</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>role_id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">FK(<code>career_roles.id</code>), Not Null</td>
+<td style="text-align: left;">Target role</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>skill_id</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">FK(<code>skills.id</code>), Not Null</td>
+<td style="text-align: left;">Required skill</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>required_proficiency</code></td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">Not Null, Default: <code>3</code></td>
+<td style="text-align: left;">Minimum expected level (1-5)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>importance</code></td>
+<td style="text-align: left;">String(32)</td>
+<td style="text-align: left;">Default: <code>"critical"</code></td>
+<td style="text-align: left;"><code>"critical"</code> or <code>"recommended"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>weight</code></td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">Default: <code>1.0</code></td>
+<td style="text-align: left;">Weight multiplier in scoring formula</td>
+</tr>
+</tbody>
+</table>
+<h4 id="9-roadmaps-roadmap_milestones-tables">9. <code>roadmaps</code> &amp; <code>roadmap_milestones</code> Tables</h4>
+<p>Structured learning paths and granular milestones.
+- <strong><code>roadmaps</code></strong>: <code>id</code>, <code>student_id</code>, <code>target_role</code>, <code>title</code>, <code>description</code>, <code>total_weeks</code>, <code>progress_percent</code>.
+- <strong><code>roadmap_milestones</code></strong>: <code>id</code>, <code>roadmap_id</code>, <code>step_number</code>, <code>title</code>, <code>description</code>, <code>deliverable</code>, <code>duration</code>, <code>status</code> (<code>pending</code>, <code>active</code>, <code>completed</code>), <code>skills_acquired</code> (JSON list), <code>resources</code> (JSON list).</p>
+<h4 id="10-jobs-saved_jobs-tables">10. <code>jobs</code> &amp; <code>saved_jobs</code> Tables</h4>
+<p>Employer openings and student bookmarks.
+- <strong><code>jobs</code></strong>: <code>id</code>, <code>recruiter_id</code>, <code>title</code>, <code>company</code>, <code>location</code>, <code>workplace_type</code> (<code>Remote</code>, <code>Hybrid</code>, <code>Onsite</code>), <code>employment_type</code> (<code>Full-time</code>, <code>Internship</code>, <code>Contract</code>), <code>salary_range</code>, <code>description</code>, <code>category</code>, <code>required_skills</code> (JSON list), <code>preferred_skills</code> (JSON list), <code>is_active</code>, <code>created_at</code>, <code>deadline</code>.
+- <strong><code>saved_jobs</code></strong>: <code>id</code>, <code>student_id</code>, <code>job_id</code>, <code>created_at</code>.</p>
+<h4 id="11-applications-table">11. <code>applications</code> Table</h4>
+<p>Tracks real candidate job application lifecycles.
+- Columns: <code>id</code>, <code>job_id</code>, <code>student_id</code>, <code>status</code> (<code>SUBMITTED</code>, <code>UNDER_REVIEW</code>, <code>SHORTLISTED</code>, <code>INTERVIEW</code>, <code>OFFERED</code>, <code>REJECTED</code>), <code>cover_letter</code>, <code>applied_at</code>, <code>updated_at</code>.</p>
+<h4 id="12-interview_sessions-interview_questions-tables">12. <code>interview_sessions</code> &amp; <code>interview_questions</code> Tables</h4>
+<p>Mock interview history and evaluation.
+- <strong><code>interview_sessions</code></strong>: <code>id</code>, <code>student_id</code>, <code>target_role</code>, <code>category</code>, <code>difficulty</code>, <code>status</code>, <code>overall_score</code>, <code>created_at</code>.
+- <strong><code>interview_questions</code></strong>: <code>id</code>, <code>session_id</code>, <code>question_text</code>, <code>student_answer</code>, <code>score</code>, <code>feedback</code>, <code>rubric_scores</code> (JSON breakdown across 4 criteria).</p>
+<h4 id="13-resume_analyses-table">13. <code>resume_analyses</code> Table</h4>
+<p>Stores parsed resume metrics, ATS keyword matches, and verb suggestions.</p>
+<h4 id="14-assistant_conversations-assistant_messages-tables">14. <code>assistant_conversations</code> &amp; <code>assistant_messages</code> Tables</h4>
+<p>Stores multi-turn grounded dialogue between the student and the AI career mentor.</p>
+<hr />
+<h2 id="5-backend-api-specification-fastapi-v1">5. Backend API Specification (FastAPI v1)</h2>
+<h3 id="51-core-configuration-security-framework">5.1 Core Configuration &amp; Security Framework</h3>
+<p>Located in <code>backend/app/core/</code>:
+- <strong><code>config.py</code></strong>: Manages environment variables using Pydantic <code>BaseSettings</code>. Handles <code>DATABASE_URL</code>, <code>JWT_SECRET_KEY</code>, <code>ALGORITHM</code> (HS256), <code>ACCESS_TOKEN_EXPIRE_MINUTES</code> (43,200 min / 30 days), and optional cloud LLM API keys.
+- <strong><code>security.py</code></strong>:
+  - <code>verify_password(plain, hashed)</code>: Cryptographic verification via Bcrypt.
+  - <code>get_password_hash(password)</code>: Generates salted Bcrypt password hash.
+  - <code>create_access_token(data, expires_delta)</code>: Encodes JWT with expiration and user ID.
+  - Dependency guards: <code>get_current_user</code> decodes token and queries database; <code>require_role(role)</code> enforces role-based authorization.</p>
+<h3 id="52-restful-domain-routers-endpoints">5.2 RESTful Domain Routers &amp; Endpoints</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Domain</th>
+<th style="text-align: left;">Route Prefix</th>
+<th style="text-align: left;">Key Endpoints</th>
+<th style="text-align: left;">Auth Level</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Auth</strong></td>
+<td style="text-align: left;"><code>/api/v1/auth</code></td>
+<td style="text-align: left;"><code>POST /register</code><br><code>POST /login</code><br><code>GET /me</code><br><code>POST /forgot-password</code><br><code>POST /reset-password</code></td>
+<td style="text-align: left;">Public / Bearer</td>
+<td style="text-align: left;">Registration, authentication, token issuance, and password recovery.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Students</strong></td>
+<td style="text-align: left;"><code>/api/v1/students</code></td>
+<td style="text-align: left;"><code>GET /me</code><br><code>PATCH /me</code><br><code>POST /skills</code><br><code>DELETE /skills/{id}</code><br><code>POST /projects</code></td>
+<td style="text-align: left;">Student</td>
+<td style="text-align: left;">Profile reading, metadata editing, skill management, and project portfolio tracking.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Careers</strong></td>
+<td style="text-align: left;"><code>/api/v1/careers</code></td>
+<td style="text-align: left;"><code>GET /roles</code><br><code>GET /analysis</code><br><code>GET /skills</code></td>
+<td style="text-align: left;">Public / Student</td>
+<td style="text-align: left;">Career role catalogue, skill gap analysis against target role, and master skill taxonomy.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Roadmaps</strong></td>
+<td style="text-align: left;"><code>/api/v1/roadmaps</code></td>
+<td style="text-align: left;"><code>GET /</code><br><code>POST /generate</code><br><code>PATCH /{id}/milestones/{mid}</code></td>
+<td style="text-align: left;">Student</td>
+<td style="text-align: left;">Dynamic milestone generation, progress percentage calculation, and milestone completion toggling.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Jobs</strong></td>
+<td style="text-align: left;"><code>/api/v1/jobs</code></td>
+<td style="text-align: left;"><code>GET /</code><br><code>GET /{id}</code><br><code>GET /matched/list</code><br><code>POST /{id}/save</code><br><code>DELETE /{id}/save</code></td>
+<td style="text-align: left;">Public / Student</td>
+<td style="text-align: left;">Opportunity exploration with category and workplace filtering, matched ranking, and bookmarking.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Applications</strong></td>
+<td style="text-align: left;"><code>/api/v1/applications</code></td>
+<td style="text-align: left;"><code>POST /submit</code><br><code>GET /my-applications</code></td>
+<td style="text-align: left;">Student</td>
+<td style="text-align: left;">Job application submission with cover letters and student application status tracking.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Recruiters</strong></td>
+<td style="text-align: left;"><code>/api/v1/recruiter</code></td>
+<td style="text-align: left;"><code>GET /dashboard</code><br><code>GET /jobs</code><br><code>POST /jobs</code><br><code>PATCH /jobs/{id}</code><br><code>GET /applications</code><br><code>PATCH /applications/{id}/status</code><br><code>GET /candidates</code></td>
+<td style="text-align: left;">Recruiter</td>
+<td style="text-align: left;">Recruiter telemetry, posting management, applicant pipeline status transitions, and talent search.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Resumes</strong></td>
+<td style="text-align: left;"><code>/api/v1/resumes</code></td>
+<td style="text-align: left;"><code>POST /analyze</code><br><code>GET /history</code></td>
+<td style="text-align: left;">Student</td>
+<td style="text-align: left;">Safe multipart PDF/TXT text extraction, ATS keyword matching, and impact verb enhancement.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Interviews</strong></td>
+<td style="text-align: left;"><code>/api/v1/interviews</code></td>
+<td style="text-align: left;"><code>POST /start</code><br><code>POST /{id}/submit-answer</code><br><code>GET /history</code></td>
+<td style="text-align: left;">Student</td>
+<td style="text-align: left;">AI mock interview session creation, multi-question rubric evaluation, and feedback scoring.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Assistant</strong></td>
+<td style="text-align: left;"><code>/api/v1/assistant</code></td>
+<td style="text-align: left;"><code>POST /chat</code><br><code>GET /conversations</code><br><code>GET /conversations/{id}</code></td>
+<td style="text-align: left;">Student / User</td>
+<td style="text-align: left;">Grounded career mentor dialogue referencing live platform jobs and student profile data.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Resources</strong></td>
+<td style="text-align: left;"><code>/api/v1/resources</code></td>
+<td style="text-align: left;"><code>GET /</code><br><code>GET /role/{slug}</code></td>
+<td style="text-align: left;">Public / Student</td>
+<td style="text-align: left;">Curated documentation, official tutorials, and open courses for skill progression.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Analytics</strong></td>
+<td style="text-align: left;"><code>/api/v1/analytics</code></td>
+<td style="text-align: left;"><code>GET /overview</code></td>
+<td style="text-align: left;">Public / All</td>
+<td style="text-align: left;">Market demand frequency distribution, hiring growth trends, and observation telemetry.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-frontend-architecture-client-state">6. Frontend Architecture &amp; Client State</h2>
+<h3 id="61-react-19-typescript-vite-architecture">6.1 React 19 + TypeScript + Vite Architecture</h3>
+<ul>
+<li><strong>Single Page Application (SPA)</strong> architecture bundled with Vite 8.</li>
+<li>Zero reliance on heavyweight CSS frameworks; completely constructed with tailored <strong>Vanilla CSS Design Tokens</strong> (<code>index.css</code>), yielding ultra-low bundle sizes and instant load times.</li>
+<li>Fully typed data layer: interfaces in <code>src/api/</code> match backend Pydantic schemas.</li>
+</ul>
+<h3 id="62-routing-hierarchy-route-guards">6.2 Routing Hierarchy &amp; Route Guards</h3>
+<p>Configured via <code>react-router-dom</code> v7 in <code>src/App.tsx</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">/</span><span class="w">                             </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">LandingPage</span><span class="w"> </span><span class="p">(</span><span class="n">Master</span><span class="w"> </span><span class="mh">3</span><span class="n">D</span><span class="w"> </span><span class="n">WebGL</span><span class="w"> </span><span class="n">Continuous</span><span class="w"> </span><span class="n">Journey</span><span class="p">)</span>
+<span class="err">│</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">Public</span><span class="w"> </span><span class="n">Layout</span><span class="w"> </span><span class="p">(</span><span class="n">Navbar</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Content</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Footer</span><span class="p">)</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">about</span><span class="w">                </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">AboutPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">features</span><span class="w">             </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">FeaturesPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">opportunities</span><span class="w">        </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">PublicOpportunitiesPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">login</span><span class="w">                </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">LoginPage</span><span class="w"> </span><span class="p">(</span><span class="n">Interactive</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="mh">1</span><span class="o">-</span><span class="n">Click</span><span class="w"> </span><span class="n">Demo</span><span class="w"> </span><span class="n">Personas</span><span class="p">)</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">register</span><span class="w">             </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">RegisterPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">forgot</span><span class="o">-</span><span class="n">password</span><span class="w">      </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ForgotPasswordPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">reset</span><span class="o">-</span><span class="n">password</span><span class="w">       </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ResetPasswordPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">privacy</span><span class="w">              </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">PrivacyPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="o">/</span><span class="n">terms</span><span class="w">                </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">TermsPage</span>
+<span class="err">│</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="n">Layout</span><span class="w"> </span><span class="p">(</span><span class="n">Slim</span><span class="w"> </span><span class="n">Top</span><span class="w"> </span><span class="n">Navigation</span><span class="w"> </span><span class="n">Bar</span><span class="p">,</span><span class="w"> </span><span class="n">Guarded</span><span class="p">)</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">dashboard</span><span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">DashboardPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">profile</span><span class="w">      </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ProfilePage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">skills</span><span class="w">       </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">SkillsPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">career</span><span class="o">-</span><span class="n">guidance</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">CareerGuidancePage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">skill</span><span class="o">-</span><span class="n">gap</span><span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">SkillGapPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">roadmap</span><span class="w">      </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">RoadmapPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">learning</span><span class="w">     </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">LearningPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">projects</span><span class="w">     </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ProjectsPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">resume</span><span class="w">       </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ResumePage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">interview</span><span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">InterviewPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">opportunities</span><span class="o">-&gt;</span><span class="w"> </span><span class="n">OpportunitiesPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">applications</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ApplicationsPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">saved</span><span class="w">        </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">SavedJobsPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">assistant</span><span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">AssistantPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">notifications</span><span class="o">-&gt;</span><span class="w"> </span><span class="n">NotificationsPage</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="o">/</span><span class="n">student</span><span class="o">/</span><span class="n">settings</span><span class="w">     </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">SettingsPage</span>
+<span class="err">│</span>
+<span class="err">└──</span><span class="w"> </span><span class="n">Recruiter</span><span class="w"> </span><span class="n">Layout</span><span class="w"> </span><span class="p">(</span><span class="n">Slim</span><span class="w"> </span><span class="n">Top</span><span class="w"> </span><span class="n">Navigation</span><span class="w"> </span><span class="n">Bar</span><span class="p">,</span><span class="w"> </span><span class="n">Guarded</span><span class="p">)</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">recruiter</span><span class="o">/</span><span class="n">dashboard</span><span class="w">  </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">RecruiterDashboardPage</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">recruiter</span><span class="o">/</span><span class="n">company</span><span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">CompanyPage</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">recruiter</span><span class="o">/</span><span class="n">jobs</span><span class="w">       </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">RecruiterJobsPage</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">recruiter</span><span class="o">/</span><span class="n">jobs</span><span class="o">/</span><span class="n">new</span><span class="w">   </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">PostJobPage</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">recruiter</span><span class="o">/</span><span class="n">applications</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">RecruiterApplicationsPage</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">recruiter</span><span class="o">/</span><span class="n">candidates</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">CandidatesPage</span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="o">/</span><span class="n">recruiter</span><span class="o">/</span><span class="n">analytics</span><span class="w">  </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">AnalyticsPage</span>
+<span class="w">    </span><span class="err">└──</span><span class="w"> </span><span class="o">/</span><span class="n">recruiter</span><span class="o">/</span><span class="n">settings</span><span class="w">   </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">RecruiterSettingsPage</span>
+</code></pre></div>
+
+<h3 id="63-global-state-management-authcontext-toastcontext">6.3 Global State Management (AuthContext &amp; ToastContext)</h3>
+<ol>
+<li><strong><code>AuthContext</code> (<code>src/context/AuthContext.tsx</code>)</strong>:
+   - Manages active user authentication status, JWT token persistence in <code>localStorage</code>, and role switching.
+   - Provides methods: <code>login(email, password)</code>, <code>register(...)</code>, <code>logout()</code>, <code>updateUser(...)</code>, and <code>switchPersona(role)</code>.
+   - On application mount, verifies stored tokens against the backend <code>/auth/me</code> endpoint.</li>
+<li><strong><code>ToastContext</code> (<code>src/context/ToastContext.tsx</code>)</strong>:
+   - Manages queue-based floating feedback notifications (<code>success</code>, <code>error</code>, <code>info</code>, <code>warning</code>).
+   - Renders animated toast popups with auto-dismiss timers and Lucide icon badges.</li>
+</ol>
+<h3 id="64-resilient-api-layer-offline-demo-data-fallback">6.4 Resilient API Layer &amp; Offline Demo Data Fallback</h3>
+<p>Located in <code>src/api/client.ts</code> and <code>src/api/demoData.ts</code>:
+- <strong>Centralized HTTP Client</strong>: Wraps native <code>fetch</code> with token injection, timeout controllers, and automatic JSON response parsing.
+- <strong>Backend Health Probe</strong>: The <code>checkHealth()</code> function monitors backend availability and latency, driving the live pulse indicator in the top navbar.
+- <strong>Graceful Offline Degradation</strong>: When operating disconnected from the backend, API client methods fallback transparently to rich demo data (<code>demoData.ts</code>), ensuring zero-downtime demonstration capability.</p>
+<hr />
+<h2 id="7-visual-design-system-ui-architecture">7. Visual Design System &amp; UI Architecture</h2>
+<h3 id="71-design-philosophy-cinematic-cybernetic-glassmorphism">7.1 Design Philosophy: Cinematic Cybernetic Glassmorphism</h3>
+<p>The visual design language communicates precision, technological sophistication, and academic rigor:
+- <strong>Atmospheric Depth</strong>: Deep void backgrounds paired with subtle radial glows and multi-layered backdrop blur.
+- <strong>Frosted Glass Elevation</strong>: Translucent card surfaces with high saturation, inset highlights, and gradient borders that simulate real frosted glass.
+- <strong>Tactile Responsiveness</strong>: Interactive elements provide instant visual feedback through micro-animations, scale shifts, and glowing borders.</p>
+<h3 id="72-design-tokens-colors-css-variables">7.2 Design Tokens, Colors &amp; CSS Variables</h3>
+<p>Extracted from <code>landing page/src/index.css</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c">/* Surfaces &amp; Backgrounds */</span>
+<span class="w">  </span><span class="nv">--bg-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#05070D</span><span class="p">;</span><span class="w">              </span><span class="c">/* Deep Cyber Void */</span>
+<span class="w">  </span><span class="nv">--bg-secondary</span><span class="p">:</span><span class="w"> </span><span class="mh">#0A0E18</span><span class="p">;</span><span class="w">            </span><span class="c">/* Dark Midnight Navy */</span>
+<span class="w">  </span><span class="nv">--bg-card</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w"> </span><span class="mf">0.60</span><span class="p">);</span><span class="w">  </span><span class="c">/* Translucent Glass Base */</span>
+<span class="w">  </span><span class="nv">--bg-card-hover</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="mf">0.72</span><span class="p">);</span>
+<span class="w">  </span><span class="nv">--bg-glass</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.035</span><span class="p">);</span>
+<span class="w">  </span><span class="nv">--bg-glass-active</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.08</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c">/* Typography Colors */</span>
+<span class="w">  </span><span class="nv">--text-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#F5F7FF</span><span class="p">;</span><span class="w">            </span><span class="c">/* Pure Crisp White */</span>
+<span class="w">  </span><span class="nv">--text-secondary</span><span class="p">:</span><span class="w"> </span><span class="mh">#8D96AA</span><span class="p">;</span><span class="w">          </span><span class="c">/* Balanced Neutral Slate */</span>
+<span class="w">  </span><span class="nv">--text-muted</span><span class="p">:</span><span class="w"> </span><span class="mh">#5A6478</span><span class="p">;</span><span class="w">              </span><span class="c">/* Subtle Dim Gray */</span>
+
+<span class="w">  </span><span class="c">/* Borders &amp; Glass Dividers */</span>
+<span class="w">  </span><span class="nv">--border-subtle</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.09</span><span class="p">);</span>
+<span class="w">  </span><span class="nv">--border-focus</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.20</span><span class="p">);</span>
+<span class="w">  </span><span class="nv">--border-highlight</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">167</span><span class="p">,</span><span class="w"> </span><span class="mi">139</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">  </span><span class="nv">--border-glass</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.12</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c">/* Curated Vivid Accents */</span>
+<span class="w">  </span><span class="nv">--accent-lavender</span><span class="p">:</span><span class="w"> </span><span class="mh">#A78BFA</span><span class="p">;</span><span class="w">         </span><span class="c">/* Primary Brand Glow */</span>
+<span class="w">  </span><span class="nv">--accent-violet</span><span class="p">:</span><span class="w"> </span><span class="mh">#8B5CF6</span><span class="p">;</span><span class="w">           </span><span class="c">/* Deep Electric Violet */</span>
+<span class="w">  </span><span class="nv">--accent-cyan</span><span class="p">:</span><span class="w"> </span><span class="mh">#38BDF8</span><span class="p">;</span><span class="w">             </span><span class="c">/* Algorithmic Sky Cyan */</span>
+<span class="w">  </span><span class="nv">--accent-mint</span><span class="p">:</span><span class="w"> </span><span class="mh">#34D399</span><span class="p">;</span><span class="w">             </span><span class="c">/* Success &amp; Verification Emerald */</span>
+<span class="w">  </span><span class="nv">--accent-amber</span><span class="p">:</span><span class="w"> </span><span class="mh">#FBBF24</span><span class="p">;</span><span class="w">            </span><span class="c">/* Caution &amp; Alert Gold */</span>
+
+<span class="w">  </span><span class="c">/* Soft Ambient Glows */</span>
+<span class="w">  </span><span class="nv">--glow-lavender</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">167</span><span class="p">,</span><span class="w"> </span><span class="mi">139</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15</span><span class="p">);</span>
+<span class="w">  </span><span class="nv">--glow-cyan</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">56</span><span class="p">,</span><span class="w"> </span><span class="mi">189</span><span class="p">,</span><span class="w"> </span><span class="mi">248</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15</span><span class="p">);</span>
+<span class="w">  </span><span class="nv">--glow-mint</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">52</span><span class="p">,</span><span class="w"> </span><span class="mi">211</span><span class="p">,</span><span class="w"> </span><span class="mi">153</span><span class="p">,</span><span class="w"> </span><span class="mf">0.12</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c">/* Border Radii */</span>
+<span class="w">  </span><span class="nv">--radius-sm</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--radius-md</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--radius-lg</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--radius-xl</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--radius-full</span><span class="p">:</span><span class="w"> </span><span class="mi">9999</span><span class="kt">px</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c">/* Cubic Bezier Physics */</span>
+<span class="w">  </span><span class="nv">--transition-smooth</span><span class="p">:</span><span class="w"> </span><span class="kc">all</span><span class="w"> </span><span class="mf">0.25</span><span class="kt">s</span><span class="w"> </span><span class="nb">cubic-bezier</span><span class="p">(</span><span class="mf">0.16</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="nv">--transition-spring</span><span class="p">:</span><span class="w"> </span><span class="kc">all</span><span class="w"> </span><span class="mf">0.4</span><span class="kt">s</span><span class="w"> </span><span class="nb">cubic-bezier</span><span class="p">(</span><span class="mf">0.34</span><span class="p">,</span><span class="w"> </span><span class="mf">1.56</span><span class="p">,</span><span class="w"> </span><span class="mf">0.64</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="73-typography-hierarchy-font-pairing">7.3 Typography Hierarchy &amp; Font Pairing</h3>
+<ul>
+<li><strong>Display Headings (<code>font-family: 'Space Grotesk'</code>)</strong>: Applied to all <code>h1</code> through <code>h6</code> elements. Features geometric, modern letterforms with negative tracking (<code>letter-spacing: -0.025em</code>) for a futuristic, cinematic feel.</li>
+<li><strong>Body &amp; Data Typography (<code>font-family: 'Inter'</code>)</strong>: Applied to body copy, table cells, metric labels, and form controls. Ensures optimal legibility across high-density technical dashboards.</li>
+</ul>
+<h3 id="74-glassmorphic-panels-surface-elevation">7.4 Glassmorphic Panels &amp; Surface Elevation</h3>
+<p>The <code>.glass-panel</code> utility class implements multi-layered depth:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="nc">glass-panel</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nb">linear-gradient</span><span class="p">(</span><span class="mi">135</span><span class="kt">deg</span><span class="p">,</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.05</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.01</span><span class="p">)</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">),</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--bg-card</span><span class="p">);</span>
+<span class="w">  </span><span class="n">backdrop-filter</span><span class="p">:</span><span class="w"> </span><span class="nb">blur</span><span class="p">(</span><span class="mi">24</span><span class="kt">px</span><span class="p">)</span><span class="w"> </span><span class="nb">saturate</span><span class="p">(</span><span class="mi">180</span><span class="kt">%</span><span class="p">);</span>
+<span class="w">  </span><span class="kp">-webkit-</span><span class="n">backdrop-filter</span><span class="p">:</span><span class="w"> </span><span class="nb">blur</span><span class="p">(</span><span class="mi">24</span><span class="kt">px</span><span class="p">)</span><span class="w"> </span><span class="nb">saturate</span><span class="p">(</span><span class="mi">180</span><span class="kt">%</span><span class="p">);</span>
+<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--border-glass</span><span class="p">);</span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--radius-lg</span><span class="p">);</span>
+<span class="w">  </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="w"> </span><span class="mi">48</span><span class="kt">px</span><span class="w"> </span><span class="mi">-12</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">),</span>
+<span class="w">              </span><span class="kc">inset</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.14</span><span class="p">),</span>
+<span class="w">              </span><span class="kc">inset</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">-1</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">  </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--transition-smooth</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="75-sleek-top-navigation-bar-redesign">7.5 Sleek Top Navigation Bar Redesign</h3>
+<p>In Phase 9, traditional bulky 260px vertical sidebars were replaced by a modern, high-performance horizontal <strong>Top Navigation Bar</strong> (<code>height: 54px</code> / <code>66px</code>):
+- Pushes navigation links to the horizontal header, freeing up 100% of horizontal viewport width for wide data tables, radar charts, and candidate pipelines.
+- Features a live <strong>AI Engine pulse indicator</strong> showing backend status and latency.
+- Profile pill displaying student initials, quick notification badges, and dropdown menus for workspace settings and sign out.</p>
+<hr />
+<h2 id="8-3d-webgl-journey-canvas-threejs-engine">8. 3D WebGL Journey Canvas (Three.js Engine)</h2>
+<h3 id="81-webgl-pipeline-continuous-spline-path">8.1 WebGL Pipeline &amp; Continuous Spline Path</h3>
+<p>Located in <code>landing page/src/three/JourneyCanvas.tsx</code>:
+- Rendered via a hardware-accelerated <strong><code>THREE.WebGLRenderer</code></strong> with <code>antialias: true</code>, <code>alpha: true</code>, and <code>ACESFilmicToneMapping</code>.
+- Uses a <strong><code>THREE.CatmullRomCurve3</code></strong> centripetal spline with 12 mathematical control points traversing from the Hero origin ($Z = +6.0$) to the Future Horizon ($Z = -75.0$):</p>
+<div class="codehilite"><pre><span></span><code>(1.4, -0.95, 6)   ──&gt; Hero Origin (Traveler at Start)
+(1.2, -0.9, 2.5)  ──&gt; Curved Hero Transition
+(0.5, -0.6, -2)   ──&gt; Transition to Career Network
+(0.0, 0.4, -13)   ──&gt; Core Sphere (Career Intelligence Orbit)
+(1.2, -0.8, -38)  ──&gt; Learning Roadmap (Ascending Steps)
+(0.4, -0.2, -55)  ──&gt; Opportunity Matcher (Network Graph)
+(0.0, 0.4, -75)   ──&gt; Future Horizon (Summit &amp; Archway)
+</code></pre></div>
+
+<h3 id="82-scroll-synchronized-camera-choreography">8.2 Scroll-Synchronized Camera Choreography</h3>
+<ul>
+<li>As the user scrolls through the landing page, <code>scrollProgress</code> (normalized $0.0$ to $1.0$) is tracked via a passive window listener.</li>
+<li>The camera position and look-at target interpolate smoothly along the 3D curve using linear easing (<code>MathUtils.lerp</code>).</li>
+<li>Damped mouse parallax adds subtle organic movement as the cursor moves across the viewport.</li>
+</ul>
+<h3 id="83-interactive-visual-objects-chapter-themes">8.3 Interactive Visual Objects &amp; Chapter Themes</h3>
+<ol>
+<li><strong>Spline Tube Geometry</strong>: Built using <code>THREE.TubeGeometry</code> with 180 segments. Vertex colors blend seamlessly from Lavender (<code>#A78BFA</code>) through Sky Cyan (<code>#38BDF8</code>) to Mint (<code>#34D399</code>).</li>
+<li><strong>Photon Traveler Bead</strong>: A glowing white mesh accompanied by a <code>PointLight</code> that traverses the tube path in sync with scroll progress.</li>
+<li><strong>Hero Traveler Silhouette</strong>: Minimalist geometric humanoid figure on a glowing ring pedestal overlooking the journey ahead.</li>
+<li><strong>Core Sphere Group</strong>: A faceted icosahedron surrounded by an animated wireframe outer shell and orbital particle rings, symbolizing career intelligence.</li>
+<li><strong>Roadmap Milestone Markers</strong>: Ascending crystalline platforms representing educational milestones.</li>
+<li><strong>Opportunity Network Nodes</strong>: Interconnected cluster of glowing vertices representing matched industry roles.</li>
+<li><strong>Future Horizon Summit</strong>: Triumphant portal archway and summit traveler silhouette surrounded by radiant ambient particles.</li>
+</ol>
+<h3 id="84-performance-accessibility-adaptations">8.4 Performance &amp; Accessibility Adaptations</h3>
+<ul>
+<li>Detects the <code>prefers-reduced-motion</code> media query to disable heavy parallax animations for users with motion sensitivity.</li>
+<li>Pixel ratio is clamped to $\min(\text{devicePixelRatio}, 2)$ to maintain 60 FPS on high-DPI retina displays.</li>
+<li>Efficiently disposes geometries, materials, and requestAnimationFrame loops on component unmount.</li>
+</ul>
+<hr />
+<h2 id="9-comprehensive-page-by-page-uiux-specifications">9. Comprehensive Page-by-Page UI/UX Specifications</h2>
+<h3 id="91-the-master-3d-landing-page-6-chapters">9.1 The Master 3D Landing Page (6 Chapters)</h3>
+<h4 id="chapter-1-hero-section-herotsx">Chapter 1: Hero Section (<code>Hero.tsx</code>)</h4>
+<ul>
+<li>High-impact headline: <em>"Bridge Your Skills. Build Your Tomorrow."</em></li>
+<li>Interactive primary CTAs: <em>"Explore Career Intelligence"</em> and <em>"For Tech Recruiters"</em>.</li>
+<li>Floating live metrics banner displaying platform stats (94% placement rate, 4 curated specializations, 100+ active roles).</li>
+<li>Smooth entry point to the 3D journey path.</li>
+</ul>
+<h4 id="chapter-2-career-network-careernetworktsx">Chapter 2: Career Network (<code>CareerNetwork.tsx</code>)</h4>
+<ul>
+<li>Visual graph showing the interconnected relationship between academic curricula and industry role requirements.</li>
+<li>Highlights the flow of student competencies into machine learning, data engineering, full-stack development, and DevOps tracks.</li>
+</ul>
+<h4 id="chapter-3-career-intelligence-careerintelligencetsx">Chapter 3: Career Intelligence (<code>CareerIntelligence.tsx</code>)</h4>
+<ul>
+<li>Interactive demonstration of the <strong>6-axis Skill Gap Radar</strong>.</li>
+<li>Live role switcher allowing visitors to preview skill gaps for AI Engineer vs. Full-Stack Systems Engineer vs. Data Scientist roles.</li>
+<li>Explains the deterministic scoring methodology with clear visual formulas.</li>
+</ul>
+<h4 id="chapter-4-dynamic-learning-roadmap-learningroadmaptsx">Chapter 4: Dynamic Learning Roadmap (<code>LearningRoadmap.tsx</code>)</h4>
+<ul>
+<li>Step-by-step milestone timeline showcasing estimated weekly hours, deliverables, and acquired competencies.</li>
+<li>Interactive milestone toggle previewing real-time progress percentage updates.</li>
+</ul>
+<h4 id="chapter-5-opportunity-matcher-opportunitymatchertsx">Chapter 5: Opportunity Matcher (<code>OpportunityMatcher.tsx</code>)</h4>
+<ul>
+<li>Connected directly to the live backend <code>/api/v1/jobs</code> API.</li>
+<li>Displays realistic job cards with transparent match score breakdowns (e.g., <em>"92% Match: 5/5 Required Skills, +5% Project Bonus"</em>).</li>
+<li>Category filters (AI/ML, Web Systems, Cloud) and workplace badges (Remote, Hybrid, Onsite).</li>
+</ul>
+<h4 id="chapter-6-final-call-to-action-finalctatsx">Chapter 6: Final Call to Action (<code>FinalCTA.tsx</code>)</h4>
+<ul>
+<li>High-energy summit conclusion with celebratory particle effects.</li>
+<li>Dual action buttons directing students and recruiters to instantaneous registration.</li>
+</ul>
+<hr />
+<h3 id="92-public-authentication-pages">9.2 Public &amp; Authentication Pages</h3>
+<h4 id="interactive-sign-in-page-loginpagetsx">Interactive Sign In Page (<code>LoginPage.tsx</code>)</h4>
+<p>Redesigned in Phase 10 with interactive usability features:
+- <strong>1-Click Demo Persona Cards</strong>:
+  - <strong>Alex Rivera (Student)</strong>: Auto-fills <code>student@careerbridge.ai</code> / <code>student123</code> with a single click.
+  - <strong>Sarah Chen (Recruiter)</strong>: Auto-fills <code>recruiter@deepmind.com</code> / <code>recruiter123</code> with a single click.
+- <strong>Interactive Password Controls</strong>: <code>Eye</code> / <code>EyeOff</code> visibility toggle buttons.
+- <strong>Real-Time Caps Lock Detection</strong>: Warning banner appears instantly when Caps Lock is active.
+- <strong>Dynamic Email Validation</strong>: Real-time syntax validation with green checkmark indicators.
+- <strong>Stepped Authentication Progress</strong>: Displays multi-step feedback (<em>"Verifying credentials..."</em> $\rightarrow$ <em>"Retrieving JWT token..."</em> $\rightarrow$ <em>"Redirecting..."</em>) followed by celebratory Canvas Confetti on success.</p>
+<h4 id="registration-page-registerpagetsx">Registration Page (<code>RegisterPage.tsx</code>)</h4>
+<ul>
+<li>Role selector toggle (<code>Student</code> vs. <code>Recruiter</code>).</li>
+<li>Full form validation with password strength meter, email uniqueness check, and terms acceptance.</li>
+</ul>
+<h4 id="additional-public-pages">Additional Public Pages</h4>
+<ul>
+<li><strong>About Page (<code>AboutPage.tsx</code>)</strong>: Platform mission, DeepMind-inspired algorithmic ethics, and founding story.</li>
+<li><strong>Features Page (<code>FeaturesPage.tsx</code>)</strong>: In-depth breakdown of all 6 platform intelligence engines.</li>
+<li><strong>Public Opportunities (<code>PublicOpportunitiesPage.tsx</code>)</strong>: Searchable and filterable job directory accessible to unregistered visitors.</li>
+<li><strong>Legal Pages (<code>PrivacyPage.tsx</code>, <code>TermsPage.tsx</code>)</strong>: Complete GDPR-compliant data privacy policies and terms of service.</li>
+</ul>
+<hr />
+<h3 id="93-student-portal-16-sub-pages">9.3 Student Portal (16 Sub-Pages)</h3>
+<ol>
+<li><strong>Dashboard (<code>DashboardPage.tsx</code>)</strong>: Central command center featuring the career readiness gauge, active milestone countdown, top matched opportunities, and quick action cards.</li>
+<li><strong>Profile (<code>ProfilePage.tsx</code>)</strong>: Academic details, target career role, biographical summary, and repository links (GitHub, LinkedIn, Portfolio).</li>
+<li><strong>Skills (<code>SkillsPage.tsx</code>)</strong>: Comprehensive skill inventory management. Add skills with proficiency sliders (1–5) and provide verifiable GitHub project evidence.</li>
+<li><strong>Career Guidance (<code>CareerGuidancePage.tsx</code>)</strong>: High-level guidance overview comparing candidate skills against industry career paths.</li>
+<li><strong>Skill Gap Analysis (<code>SkillGapPage.tsx</code>)</strong>: Interactive 6-axis SVG radar visualization, critical missing competencies list, and tailored recommendations.</li>
+<li><strong>Dynamic Roadmap (<code>RoadmapPage.tsx</code>)</strong>: Complete multi-week curriculum broken into sequential milestones. Check off deliverables to trigger real-time progress recalculation.</li>
+<li><strong>Curated Learning (<code>LearningPage.tsx</code>)</strong>: Filterable library of free and open-access courses, documentation, and tutorials mapped directly to student skill gaps.</li>
+<li><strong>Projects Portfolio (<code>ProjectsPage.tsx</code>)</strong>: Showcase engineering projects with repository URLs, live demo links, and tagged technology stacks that feed the $+5\%$ match bonus.</li>
+<li><strong>AI Resume Diagnostics (<code>ResumePage.tsx</code>)</strong>: PDF/TXT drag-and-drop uploader, ATS readiness score gauge, missing keyword alerts, and high-impact action verb suggestions.</li>
+<li><strong>AI Mock Interview (<code>InterviewPage.tsx</code>)</strong>: Interactive practice simulator with question timer, answer input, 4-axis rubric scoring, and model benchmark comparisons.</li>
+<li><strong>Opportunity Explorer (<code>OpportunitiesPage.tsx</code>)</strong>: Full job search interface with transparent match percentages, requirement breakdowns, and one-click application submission.</li>
+<li><strong>Applications Tracker (<code>ApplicationsPage.tsx</code>)</strong>: Real-time status pipeline tracking submitted applications (<code>SUBMITTED</code> $\rightarrow$ <code>UNDER_REVIEW</code> $\rightarrow$ <code>SHORTLISTED</code> $\rightarrow$ <code>OFFERED</code>).</li>
+<li><strong>Saved Jobs (<code>SavedJobsPage.tsx</code>)</strong>: Bookmarked positions saved for later review.</li>
+<li><strong>AI Assistant (<code>AssistantPage.tsx</code>)</strong>: Grounded multi-turn conversational mentor answering career questions using live platform database records.</li>
+<li><strong>Notifications (<code>NotificationsPage.tsx</code>)</strong>: System alerts regarding application status changes, new matching jobs, and milestone reminders.</li>
+<li><strong>Settings (<code>SettingsPage.tsx</code>)</strong>: Password changes, notification preferences, and account management.</li>
+</ol>
+<hr />
+<h3 id="94-recruiter-portal-8-sub-pages">9.4 Recruiter Portal (8 Sub-Pages)</h3>
+<ol>
+<li><strong>Recruiter Dashboard (<code>RecruiterDashboardPage.tsx</code>)</strong>: Key recruiting metrics (active job postings, total applicants, shortlisted talent, pipeline velocity).</li>
+<li><strong>Company Profile (<code>CompanyPage.tsx</code>)</strong>: Manage company branding, culture description, website link, and industry tags.</li>
+<li><strong>Job Postings Management (<code>RecruiterJobsPage.tsx</code>)</strong>: List and status view of all open, paused, and closed company listings.</li>
+<li><strong>Post New Role (<code>PostJobPage.tsx</code>)</strong>: Structured job creation wizard with required vs. preferred skill tag pickers, salary ranges, and workplace type selection.</li>
+<li><strong>Applicant Pipeline (<code>RecruiterApplicationsPage.tsx</code>)</strong>: Pipeline management interface for moving candidates across stages (<code>UNDER_REVIEW</code>, <code>SHORTLISTED</code>, <code>INTERVIEW</code>, <code>OFFERED</code>, <code>REJECTED</code>).</li>
+<li><strong>Candidate Discovery (<code>CandidatesPage.tsx</code>)</strong>: Search talent database by skill keywords, match readiness, and academic degree, with privacy-guarded outreach.</li>
+<li><strong>Talent Analytics (<code>AnalyticsPage.tsx</code>)</strong>: Labor market demand heatmaps, skill frequency distributions, and candidate supply curves.</li>
+<li><strong>Recruiter Settings (<code>RecruiterSettingsPage.tsx</code>)</strong>: Hiring team preferences, email alerts, and organizational settings.</li>
+</ol>
+<hr />
+<h2 id="10-testing-security-deployment-guide">10. Testing, Security &amp; Deployment Guide</h2>
+<h3 id="101-backend-automated-test-suite-pytest">10.1 Backend Automated Test Suite (Pytest)</h3>
+<p>Located in <code>backend/tests/</code>:
+- <strong>17 automated test cases</strong> validating core platform functionality:
+  1. <code>test_auth.py</code>: Registration, duplicate email rejection, Bcrypt verification, JWT token issuance, and <code>/me</code> validation.
+  2. <code>test_career_intelligence.py</code>: Deterministic skill gap scoring formulas, verification bonus factor calculation, and radar axis projection.
+  3. <code>test_roadmap.py</code>: Roadmap milestone generation and completion percentage recalculation.
+  4. <code>test_jobs_applications.py</code>: 70/30 matching mathematics, project bonus application, application lifecycle transitions, and duplicate prevention.
+  5. <code>test_ai_services.py</code>: Resume keyword extraction, interview rubric scoring, and graceful AI fallback.
+- <strong>Execution Command</strong>:
+  <code>bash
+  cd backend
+  python -m pytest tests -v</code>
+- <strong>Result</strong>: <strong>17 passed in ~1.6s</strong>.</p>
+<h3 id="102-frontend-build-verification">10.2 Frontend Build Verification</h3>
+<ul>
+<li>Validated via TypeScript compiler and Vite production build:
+  <code>bash
+  cd "landing page"
+  npm run build</code></li>
+<li><strong>Result</strong>: <code>tsc -b &amp;&amp; vite build</code> succeeds with <strong>0 errors in &lt;500ms</strong>, generating an optimized production bundle.</li>
+</ul>
+<h3 id="103-security-auditing-privacy-boundaries">10.3 Security Auditing &amp; Privacy Boundaries</h3>
+<ul>
+<li><strong>Password Hashing</strong>: Bcrypt with auto-generated salt; plain text passwords are never logged or stored.</li>
+<li><strong>Token Security</strong>: HS256 signed JWT tokens containing user ID subject claims.</li>
+<li><strong>Privacy Guards</strong>: Student email and phone numbers are hidden from recruiter discovery searches until an application is officially moved to <code>SHORTLISTED</code> or <code>INTERVIEW</code> stage.</li>
+<li><strong>SQL Injection Prevention</strong>: SQLAlchemy parameterized queries eliminate SQL injection vulnerabilities.</li>
+<li><strong>XSS Mitigation</strong>: React JSX automatic string escaping prevents cross-site scripting attacks.</li>
+</ul>
+<h3 id="104-local-production-deployment-setup">10.4 Local &amp; Production Deployment Setup</h3>
+<h4 id="one-click-local-launch-windows">One-Click Local Launch (Windows)</h4>
+<ol>
+<li>Run <code>start_backend.bat</code> in one terminal window (starts Uvicorn on port 8000).</li>
+<li>Run <code>start_frontend.bat</code> in a second terminal window (starts Vite on port 5173).</li>
+<li>Access the application at <code>http://localhost:5173</code>.</li>
+</ol>
+<h4 id="production-deployment-checklist">Production Deployment Checklist</h4>
+<ol>
+<li>Configure a production PostgreSQL database instance.</li>
+<li>Set environment variables:
+   <code>env
+   DATABASE_URL=postgresql+psycopg2://user:password@host:5432/careerbridge
+   JWT_SECRET_KEY=generate_a_cryptographically_secure_random_string_64_chars
+   ENVIRONMENT=production</code></li>
+<li>Run database migrations: <code>alembic upgrade head</code></li>
+<li>Seed initial catalogue: <code>python -m app.db.seed</code></li>
+<li>Build the React frontend: <code>npm run build</code> in <code>landing page/</code> and serve static assets via Nginx or Cloudflare Pages.</li>
+<li>Run Uvicorn behind a production reverse proxy with Gunicorn worker processes:
+   <code>bash
+   uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4</code></li>
+</ol>
+<hr />
+<h2 id="11-project-conclusion-summary-table">11. Project Conclusion &amp; Summary Table</h2>
+<p>CareerBridge AI represents a complete, mathematically grounded, and visually stunning career platform engineered for modern technical talent.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Dimension</th>
+<th style="text-align: left;">Implementation Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Frontend Framework</strong></td>
+<td style="text-align: left;">React 19.2 + TypeScript 5.8 + Vite 8.3 + React Router DOM 7</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Visual Styling</strong></td>
+<td style="text-align: left;">Bespoke Dark Glassmorphism tokens (<code>index.css</code>), Space Grotesk + Inter</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3D Visualization</strong></td>
+<td style="text-align: left;">Three.js 0.174 continuous WebGL Catmull-Rom spline with shader gradients</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Backend Framework</strong></td>
+<td style="text-align: left;">Python 3.13 + FastAPI 0.115 + Pydantic v2</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Database &amp; ORM</strong></td>
+<td style="text-align: left;">SQLAlchemy 2.0 + SQLite (Default Zero-Setup) / PostgreSQL (Production)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Schema Migrations</strong></td>
+<td style="text-align: left;">Alembic 1.20 with SQLite batch migration mode</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Security &amp; Auth</strong></td>
+<td style="text-align: left;">Salted Bcrypt + HS256 JWT tokens + RBAC Dependency Guards</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AI Intelligence</strong></td>
+<td style="text-align: left;">Local Intelligent Deterministic Engines + Pluggable Cloud LLM Fallback</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Automated Testing</strong></td>
+<td style="text-align: left;">17 Pytest automated test cases passing in 1.6s</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Production Build</strong></td>
+<td style="text-align: left;"><code>npm run build</code> passing with 0 TypeScript/bundler errors</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Developed for CareerBridge AI — AI-Powered Career Intelligence &amp; Recruitment Platform.</em></p>
+    </div>
+
+</body>
+</html>
