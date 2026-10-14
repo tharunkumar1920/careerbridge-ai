@@ -1,7 +1,7 @@
 @echo off
-title CareerBridge AI - Dev Server
+title Skill Link - Dev Server
 echo ========================================================
-echo   Starting CareerBridge AI Landing Page...
+echo   Starting Skill Link Frontend...
 echo ========================================================
 echo.
 cd /d "%~dp0"

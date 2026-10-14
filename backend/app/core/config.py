@@ -5,13 +5,13 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    APP_NAME: str = "CareerBridge AI Backend"
+    APP_NAME: str = "Skill Link Backend"
     APP_ENV: str = "development"
     DEBUG: bool = True
     API_V1_PREFIX: str = "/api/v1"
 
     # Security
-    SECRET_KEY: str = "careerbridge-super-secret-key-change-in-production-2026-xyz"
+    SECRET_KEY: str = "skilllink-super-secret-key-change-in-production-2026-xyz"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440  # 24 hours
 

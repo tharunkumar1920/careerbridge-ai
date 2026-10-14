@@ -460,7 +460,7 @@ export const JourneyCanvas: React.FC<JourneyCanvasProps> = ({ scrollProgress }) 
     dawnDisc.position.set(0, 1.2, -12);
     horizonGroup.add(dawnDisc);
 
-    // Glowing CareerBridge emblem over horizon
+    // Glowing Skill Link emblem over horizon
     const emblemRing = new THREE.Mesh(
       new THREE.TorusGeometry(1.1, 0.03, 16, 64),
       new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.85 })

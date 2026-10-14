@@ -52,7 +52,7 @@ class AnalyticsService:
             ))
 
         return PlatformAnalyticsResponse(
-            data_source="CareerBridge Platform Verified Listings & Aggregated Postings Sample",
+            data_source="Skill Link Platform Verified Listings & Aggregated Postings Sample",
             observation_period="Q1 2026 - Present",
             dataset_size_note="Empirical distribution computed directly across platform job listings. Not speculative forecasting.",
             top_skills_demand=skill_demand_items,

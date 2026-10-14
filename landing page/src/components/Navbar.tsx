@@ -63,13 +63,15 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection = 0, onNavigate, o
               onNavigate?.(0);
             }}
             className="brand-logo"
-            aria-label="CareerBridge AI Home"
+            aria-label="Skill Link Home"
           >
-            <div className="brand-glyph">
-              <Sparkles size={16} color="#FFFFFF" />
-            </div>
-            <span>
-              CareerBridge<span style={{ color: 'var(--accent-cyan)', marginLeft: '4px' }}>AI</span>
+            <img
+              src="/skill-link-icon.png"
+              alt="Skill Link Logo"
+              style={{ width: '32px', height: '32px', objectFit: 'contain', filter: 'drop-shadow(0 0 12px rgba(56, 189, 248, 0.4))' }}
+            />
+            <span style={{ letterSpacing: '0.03em', fontWeight: 700 }}>
+              SKILL <span style={{ color: 'var(--accent-cyan)' }}>LINK</span>
             </span>
           </a>
 
@@ -299,7 +301,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection = 0, onNavigate, o
               onClick={() => setMobileMenuOpen(false)}
               className="mobile-drawer-link"
             >
-              <span>About CareerBridge AI</span>
+              <span>About Skill Link</span>
             </Link>
           </div>
 

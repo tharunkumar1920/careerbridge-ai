@@ -62,7 +62,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore, onOpenAuth }) => {
             fontWeight: 400,
           }}
         >
-          "CareerBridge AI connects your skills, career goals, learning journey, and real-world opportunities into one intelligent career platform."
+          "Skill Link connects your skills, career goals, learning journey, and real-world opportunities into one intelligent career platform."
         </p>
 
         {/* Interactive Career Track Preview Pill Bar */}

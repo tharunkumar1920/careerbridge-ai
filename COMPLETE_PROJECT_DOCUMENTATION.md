@@ -1,4 +1,4 @@
-# CareerBridge AI — Complete Architecture, Design, and UI Specification
+# Skill Link — Complete Architecture, Design, and UI Specification
 
 > **AI-Powered Career Intelligence, Educational Guidance, and Recruitment Platform**  
 > *"Bridge Your Skills. Build Your Tomorrow."*  
@@ -64,12 +64,12 @@ In the modern technical recruitment landscape, both students and recruiters face
 - **Recruitment Platforms** rely on black-box keyword matching algorithms that penalize qualified candidates due to arbitrary keyword phrasing or provide candidates with zero transparent feedback when an application is rejected.
 - **Skill Acquisition** is fragmented. Students study disparate courses without an integrated roadmap that connects self-study directly to verified job openings and interactive mock interview evaluation.
 
-### 1.2 The CareerBridge Solution
-**CareerBridge AI** is an enterprise-grade, full-stack career intelligence, educational guidance, and transparent recruitment platform designed to eliminate the ambiguity between student capability and industry demand.
+### 1.2 The Skill Link Solution
+**Skill Link** is an enterprise-grade, full-stack career intelligence, educational guidance, and transparent recruitment platform designed to eliminate the ambiguity between student capability and industry demand.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        CAREERBRIDGE AI ECOSYSTEM                       │
+│                           SKILL LINK ECOSYSTEM                          │
 ├───────────────────────────────┬────────────────────────────────────────┤
 │     STUDENT CAPABILITIES      │         RECRUITER CAPABILITIES         │
 ├───────────────────────────────┼────────────────────────────────────────┤
@@ -85,7 +85,7 @@ In the modern technical recruitment landscape, both students and recruiters face
 ```
 
 ### 1.3 Key Innovations
-1. **Explainable Deterministic Matching**: Unlike opaque scoring models, CareerBridge utilizes a deterministic matching engine that breaks down candidate-job alignment into **70% Required Skills**, **30% Preferred Skills**, and a **+5% Project Evidence Bonus**.
+1. **Explainable Deterministic Matching**: Unlike opaque scoring models, Skill Link utilizes a deterministic matching engine that breaks down candidate-job alignment into **70% Required Skills**, **30% Preferred Skills**, and a **+5% Project Evidence Bonus**.
 2. **Local Intelligent AI Architecture**: The platform operates with 100% offline intelligence out-of-the-box (zero mandatory external API dependencies) via deterministic mathematical algorithms, heuristic NLP, and curated question rubrics, while maintaining plug-and-play compatibility with Gemini, OpenAI, and Anthropic.
 3. **Immersive 3D WebGL Storytelling**: A custom Three.js continuous spline journey canvas seamlessly guides first-time visitors from initial skill exploration down to career triumph with smooth scroll-coupled camera interpolation.
 4. **Cinematic Dark Glassmorphism UI**: High-contrast, accessibility-tested visual tokens (`#05070D` background, frosted glass panels with 24px backdrop blur, vibrant lavender/cyan accents) deliver an exceptionally modern desktop experience.
@@ -258,7 +258,7 @@ Each axis computes the ratio of student capability against role expectations, re
 ### 3.2 Transparent Job Matching Engine (70/30 Rule + Project Bonus)
 Located in `backend/app/services/matching_engine.py`.
 
-Unlike opaque black-box recruiters, CareerBridge implements a mathematically transparent matching model:
+Unlike opaque black-box recruiters, Skill Link implements a mathematically transparent matching model:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -412,7 +412,7 @@ Stores recruiter organizational association and contact info.
 | `phone_number` | String(32) | Nullable | Work contact telephone |
 
 #### 4. `companies` Table
-Represents employer organizations posting roles on CareerBridge.
+Represents employer organizations posting roles on Skill Link.
 | Column | Type | Constraints | Description |
 | :--- | :--- | :--- | :--- |
 | `id` | Integer | PK, Auto-increment | Unique company ID |
@@ -758,7 +758,7 @@ Located in `landing page/src/three/JourneyCanvas.tsx`:
 #### Interactive Sign In Page (`LoginPage.tsx`)
 Redesigned in Phase 10 with interactive usability features:
 - **1-Click Demo Persona Cards**:
-  - **Alex Rivera (Student)**: Auto-fills `student@careerbridge.ai` / `student123` with a single click.
+  - **Alex Rivera (Student)**: Auto-fills `student@skilllink.ai` / `student123` with a single click.
   - **Sarah Chen (Recruiter)**: Auto-fills `recruiter@deepmind.com` / `recruiter123` with a single click.
 - **Interactive Password Controls**: `Eye` / `EyeOff` visibility toggle buttons.
 - **Real-Time Caps Lock Detection**: Warning banner appears instantly when Caps Lock is active.
@@ -870,7 +870,7 @@ Located in `backend/tests/`:
 
 ## 11. Project Conclusion & Summary Table
 
-CareerBridge AI represents a complete, mathematically grounded, and visually stunning career platform engineered for modern technical talent.
+Skill Link represents a complete, mathematically grounded, and visually stunning career platform engineered for modern technical talent.
 
 | Dimension | Implementation Details |
 | :--- | :--- |
@@ -886,4 +886,4 @@ CareerBridge AI represents a complete, mathematically grounded, and visually stu
 | **Production Build** | `npm run build` passing with 0 TypeScript/bundler errors |
 
 ---
-*Developed for CareerBridge AI — AI-Powered Career Intelligence & Recruitment Platform.*
+*Developed for Skill Link — AI-Powered Career Intelligence & Recruitment Platform.*

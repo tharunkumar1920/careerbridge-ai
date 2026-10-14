@@ -11,7 +11,7 @@ from reportlab.lib import colors
 DOC_PATH = "COMPLETE_PROJECT_DOCUMENTATION.md"
 HTML_OUTPUT = "complete_project_documentation.html"
 RAW_PDF_OUTPUT = "complete_project_documentation_raw.pdf"
-FINAL_PDF_OUTPUT = "CareerBridge_AI_Complete_Documentation.pdf"
+FINAL_PDF_OUTPUT = "Skill_Link_Complete_Documentation.pdf"
 
 EDGE_PATH = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 if not os.path.exists(EDGE_PATH):
@@ -25,7 +25,7 @@ def read_and_clean_markdown():
 
     # 1. Remove the redundant top header and metadata block since we have a dedicated executive cover page
     content = re.sub(
-        r"^#\s+CareerBridge AI.*?\n---\s*\n",
+        r"^#\s+Skill Link.*?\n---\s*\n",
         "",
         content,
         flags=re.DOTALL
@@ -300,7 +300,7 @@ def process_markdown_to_html(md_content):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CareerBridge AI — Complete Architecture, Design, and UI Specification</title>
+    <title>Skill Link — Complete Architecture, Design, and UI Specification</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -801,7 +801,7 @@ def process_markdown_to_html(md_content):
             <div class="cover-top-accent"></div>
             <div class="cover-brand">
                 <div class="cover-logo-icon">CB</div>
-                <div class="cover-logo-text">CareerBridge AI</div>
+                <div class="cover-logo-text">Skill Link</div>
                 <span class="cover-logo-badge">Enterprise Edition</span>
             </div>
             
@@ -842,7 +842,7 @@ def process_markdown_to_html(md_content):
             </div>
 
             <div class="cover-footer">
-                <span>CareerBridge AI Platform Documentation</span>
+                <span>Skill Link Platform Documentation</span>
                 <span>Confidential & Academic Release</span>
             </div>
         </div>
@@ -908,7 +908,7 @@ def add_header_footer_page_numbers(raw_pdf_path, final_pdf_path):
             c.saveState()
             c.setFont("Helvetica-Bold", 7.5)
             c.setFillColor(colors.HexColor("#64748b"))
-            c.drawString(42, height - 30, "CAREERBRIDGE AI")
+            c.drawString(42, height - 30, "SKILL LINK")
             c.setFont("Helvetica", 7.5)
             c.drawString(130, height - 30, "— Complete Architecture, Design, and UI Specification")
             
@@ -927,7 +927,7 @@ def add_header_footer_page_numbers(raw_pdf_path, final_pdf_path):
         c.setFont("Helvetica", 7.5)
         c.setFillColor(colors.HexColor("#64748b"))
         if is_toc_page:
-            c.drawString(42, 26, "CareerBridge AI • Table of Contents & Executive Overview")
+            c.drawString(42, 26, "Skill Link • Table of Contents & Executive Overview")
         else:
             c.drawString(42, 26, "AI Assisted Coding Capstone Project • October 2026")
 

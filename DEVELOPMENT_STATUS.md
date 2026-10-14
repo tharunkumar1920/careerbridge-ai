@@ -1,4 +1,4 @@
-# CareerBridge AI — Development Status & Tracking
+# Skill Link — Development Status & Tracking
 
 ## Current Architecture
 - **Frontend**: Vite 8.3.2 + React 19.2.8 + TypeScript + Three.js + Lucide-react + React Router DOM 7 (`landing page/`)

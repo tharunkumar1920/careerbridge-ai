@@ -5,7 +5,7 @@ export const DEMO_STUDENT: AuthResponse = {
   access_token: 'demo_jwt_token_alex_rivera_student_2026',
   token_type: 'bearer',
   user_id: 1,
-  email: 'student@careerbridge.ai',
+  email: 'student@skilllink.ai',
   name: 'Alex Rivera',
   role: 'STUDENT',
 };
@@ -44,12 +44,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('careerbridge_user');
-    const token = localStorage.getItem('careerbridge_token');
+    const savedUser = localStorage.getItem('skilllink_user') || localStorage.getItem('careerbridge_user');
+    const token = localStorage.getItem('skilllink_token') || localStorage.getItem('careerbridge_token');
     if (savedUser && token) {
       try {
         setUser(JSON.parse(savedUser));
       } catch {
+        localStorage.removeItem('skilllink_user');
+        localStorage.removeItem('skilllink_token');
         localStorage.removeItem('careerbridge_user');
         localStorage.removeItem('careerbridge_token');
       }
@@ -59,8 +61,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const loginAsDemo = async (targetRole: 'STUDENT' | 'RECRUITER'): Promise<AuthResponse> => {
     const demoUser = targetRole === 'RECRUITER' ? DEMO_RECRUITER : DEMO_STUDENT;
-    localStorage.setItem('careerbridge_token', demoUser.access_token);
-    localStorage.setItem('careerbridge_user', JSON.stringify(demoUser));
+    localStorage.setItem('skilllink_token', demoUser.access_token);
+    localStorage.setItem('skilllink_user', JSON.stringify(demoUser));
     setUser(demoUser);
     return demoUser;
   };
@@ -68,14 +70,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (email: string, pass: string): Promise<AuthResponse> => {
     try {
       const authData = await authApi.login({ email, password: pass });
-      localStorage.setItem('careerbridge_token', authData.access_token);
-      localStorage.setItem('careerbridge_user', JSON.stringify(authData));
+      localStorage.setItem('skilllink_token', authData.access_token);
+      localStorage.setItem('skilllink_user', JSON.stringify(authData));
       setUser(authData);
       return authData;
     } catch (err: any) {
       // Automatic seamless demo fallback if backend is offline or for demo credentials
       const isRecruiterAttempt = email.toLowerCase().includes('recruiter') || email.toLowerCase().includes('deepmind');
-      if (email === 'student@careerbridge.ai' || email === 'recruiter@deepmind.com' || err.message?.includes('Failed to fetch') || err.message?.includes('NetworkError') || err.status === 401) {
+      if (email === 'student@skilllink.ai' || email === 'student@careerbridge.ai' || email === 'recruiter@deepmind.com' || err.message?.includes('Failed to fetch') || err.message?.includes('NetworkError') || err.status === 401) {
         console.warn('Backend unavailable or demo credentials detected. Using verified Demo Account Session.', err);
         return loginAsDemo(isRecruiterAttempt ? 'RECRUITER' : 'STUDENT');
       }
@@ -93,8 +95,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }): Promise<AuthResponse> => {
     try {
       const authData = await authApi.register(params);
-      localStorage.setItem('careerbridge_token', authData.access_token);
-      localStorage.setItem('careerbridge_user', JSON.stringify(authData));
+      localStorage.setItem('skilllink_token', authData.access_token);
+      localStorage.setItem('skilllink_user', JSON.stringify(authData));
       setUser(authData);
       return authData;
     } catch (err: any) {
@@ -108,8 +110,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           name: params.name,
           role: params.role,
         };
-        localStorage.setItem('careerbridge_token', localUser.access_token);
-        localStorage.setItem('careerbridge_user', JSON.stringify(localUser));
+        localStorage.setItem('skilllink_token', localUser.access_token);
+        localStorage.setItem('skilllink_user', JSON.stringify(localUser));
         setUser(localUser);
         return localUser;
       }
@@ -123,6 +125,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch {
       // quiet fallback
     }
+    localStorage.removeItem('skilllink_token');
+    localStorage.removeItem('skilllink_user');
     localStorage.removeItem('careerbridge_token');
     localStorage.removeItem('careerbridge_user');
     setUser(null);

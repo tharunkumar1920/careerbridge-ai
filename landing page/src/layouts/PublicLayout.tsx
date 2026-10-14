@@ -37,21 +37,13 @@ export const PublicLayout: React.FC = () => {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', height: '70px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           {/* Logo */}
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-            <div
-              style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '8px',
-                background: 'linear-gradient(135deg, #06B6D4, #3B82F6)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Sparkles size={18} color="#FFFFFF" />
-            </div>
-            <span style={{ fontSize: '1.2rem', fontWeight: 700, fontFamily: 'var(--font-display)', color: '#FFFFFF' }}>
-              CareerBridge<span style={{ color: 'var(--accent-cyan, #06B6D4)' }}>AI</span>
+            <img
+              src="/skill-link-icon.png"
+              alt="Skill Link"
+              style={{ width: '32px', height: '32px', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(56, 189, 248, 0.35))' }}
+            />
+            <span style={{ fontSize: '1.2rem', fontWeight: 700, fontFamily: 'var(--font-display)', color: '#FFFFFF', letterSpacing: '0.03em' }}>
+              SKILL <span style={{ color: 'var(--accent-cyan, #06B6D4)' }}>LINK</span>
             </span>
           </Link>
 
@@ -341,21 +333,13 @@ export const PublicLayout: React.FC = () => {
         >
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-              <div
-                style={{
-                  width: '24px',
-                  height: '24px',
-                  borderRadius: '6px',
-                  background: 'linear-gradient(135deg, #06B6D4, #3B82F6)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Sparkles size={14} color="#FFF" />
-              </div>
-              <span style={{ fontWeight: 700, fontSize: '1.05rem', color: '#FFFFFF' }}>
-                CareerBridge<span style={{ color: 'var(--accent-cyan, #06B6D4)' }}>AI</span>
+              <img
+                src="/skill-link-icon.png"
+                alt="Skill Link"
+                style={{ width: '26px', height: '26px', objectFit: 'contain' }}
+              />
+              <span style={{ fontWeight: 700, fontSize: '1.05rem', color: '#FFFFFF', letterSpacing: '0.03em' }}>
+                SKILL <span style={{ color: 'var(--accent-cyan, #06B6D4)' }}>LINK</span>
               </span>
             </div>
             <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, maxWidth: '280px' }}>
@@ -417,7 +401,7 @@ export const PublicLayout: React.FC = () => {
             color: 'rgba(255,255,255,0.4)',
           }}
         >
-          <div>© {new Date().getFullYear()} CareerBridge AI. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Skill Link. All rights reserved.</div>
           <div style={{ display: 'flex', gap: '16px' }}>
             <span>Deterministic Scoring</span>
             <span>•</span>

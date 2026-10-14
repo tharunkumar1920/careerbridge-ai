@@ -70,25 +70,16 @@ export const RegisterPage: React.FC = () => {
         }}
       >
         <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-          <div
-            style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: '10px',
-              background: 'linear-gradient(135deg, #06B6D4, #3B82F6)',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '12px',
-            }}
-          >
-            <Sparkles size={22} color="#FFF" />
-          </div>
+          <img
+            src="/skill-link-icon.png"
+            alt="Skill Link"
+            style={{ width: '48px', height: '48px', objectFit: 'contain', margin: '0 auto 12px auto', display: 'block', filter: 'drop-shadow(0 0 12px rgba(56, 189, 248, 0.4))' }}
+          />
           <h1 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '6px' }}>
             Create Your Account
           </h1>
           <p style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>
-            Join CareerBridge AI as a Student or Recruiter
+            Join Skill Link as a Student or Recruiter
           </p>
         </div>
 

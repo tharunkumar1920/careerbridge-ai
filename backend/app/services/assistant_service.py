@@ -67,9 +67,9 @@ class AssistantService:
             suggested_jobs = [f"{j.title} at {j.company} ({j.location}) - Compensation: {j.salary_range}" for j in real_jobs]
             
             content = (
-                f"Here are the active, verified opportunities currently open on CareerBridge AI matching your target track ({target_role}):\n\n"
+                f"Here are the active, verified opportunities currently open on Skill Link matching your target track ({target_role}):\n\n"
                 + "\n".join([f"• **{j.title}** at {j.company}\n  Location: {j.location} | Type: {j.employment_type} | Comp: {j.salary_range}\n  Key Requirements: {', '.join(j.required_skills)}" for j in real_jobs])
-                + "\n\n*Note: CareerBridge AI only displays real platform opportunities; listings are never fabricated.*"
+                + "\n\n*Note: Skill Link only displays real platform opportunities; listings are never fabricated.*"
             )
             actions = ["Review required skills in the Opportunity Matcher", "Submit verified application through Student Portal"]
 
@@ -101,14 +101,14 @@ class AssistantService:
                 "Practice articulating time and space complexities"
             ]
             content = (
-                f"To prepare for **{target_role}** technical interviews, CareerBridge AI provides targeted mock interview sessions. "
+                f"To prepare for **{target_role}** technical interviews, Skill Link provides targeted mock interview sessions. "
                 f"Key areas tested include core algorithms, architectural tradeoffs, and deep conceptual questions. "
                 f"You can practice with immediate rubric-based feedback directly inside the Interview Preparation module."
             )
 
         else:
             content = (
-                f"Hello {student.full_name if student else 'there'}! I am your CareerBridge AI Intelligence Assistant. "
+                f"Hello {student.full_name if student else 'there'}! I am your Skill Link Intelligence Assistant. "
                 f"I can help analyze your skill gaps for **{target_role}**, recommend tailored learning roadmaps, "
                 f"evaluate your resume, practice interview questions, or retrieve verified job openings. How can I assist your career progression today?"
             )

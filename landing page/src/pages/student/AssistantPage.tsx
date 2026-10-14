@@ -15,7 +15,7 @@ export const AssistantPage: React.FC = () => {
     {
       role: 'assistant',
       content:
-        'Hello Alex. I am your grounded CareerBridge AI Partner. I have direct access to your verified portfolio (Stanford Junior, AI/ML track), your 4 certified skills (Python, PyTorch, ML, Data Structures), and live employer requirements on the network.\n\nHow can I help you accelerate your trajectory today?',
+        'Hello Alex. I am your grounded Skill Link AI Partner. I have direct access to your verified portfolio (Stanford Junior, AI/ML track), your 4 certified skills (Python, PyTorch, ML, Data Structures), and live employer requirements on the network.\n\nHow can I help you accelerate your trajectory today?',
       structured_data: {
         recommended_actions: [
           'What roles have the highest match for my verified profile?',

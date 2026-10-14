@@ -27,7 +27,7 @@ export const TermsPage: React.FC = () => {
           Terms of Service
         </h1>
         <p style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '0.9rem' }}>
-          Effective: October 2026 • CareerBridge AI Student and Employer Terms
+          Effective: October 2026 • Skill Link Student and Employer Terms
         </p>
       </div>
 
@@ -50,7 +50,7 @@ export const TermsPage: React.FC = () => {
             <FileCheck size={18} color="#06B6D4" /> 1. Platform Purpose & Career Guidance
           </h2>
           <p>
-            CareerBridge AI delivers structured career intelligence, objective skill-gap evaluations, and personalized learning roadmaps. While our algorithms provide explainable match scores and preparation feedback, CareerBridge AI does not guarantee employment, internship placements, or hiring outcomes.
+            Skill Link delivers structured career intelligence, objective skill-gap evaluations, and personalized learning roadmaps. While our algorithms provide explainable match scores and preparation feedback, Skill Link does not guarantee employment, internship placements, or hiring outcomes.
           </p>
         </section>
 

@@ -97,7 +97,7 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenAuth }) => {
             lineHeight: 1.6,
           }}
         >
-         " CareerBridge AI isn't just about finding jobs. It's about building the future you want — with the right guidance, at the right time."
+         " Skill Link isn't just about finding jobs. It's about building the future you want — with the right guidance, at the right time."
         </p>
 
         {/* Section 19 Core Ending Statement */}
@@ -174,7 +174,7 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenAuth }) => {
           >
             <CheckCircle2 size={18} />
             <span style={{ fontSize: '0.9375rem', fontWeight: 500 }}>
-              Welcome to CareerBridge AI. Check your student inbox for your personalized assessment link!
+              Welcome to Skill Link. Check your student inbox for your personalized assessment link!
             </span>
           </div>
         )}

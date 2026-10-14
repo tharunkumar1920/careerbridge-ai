@@ -203,7 +203,7 @@ export const CareerNetwork: React.FC<CareerNetworkProps> = ({ onContinue }) => {
           The Bigger Picture — Connected to the Core.
         </h2>
         <p style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-          "No more fragmented platforms. CareerBridge connects every dimension of your career journey to an intelligent AI nucleus. Click any option on the wheel or select next to rotate the constellation into focus.
+          "No more fragmented platforms. Skill Link connects every dimension of your career journey to an intelligent AI nucleus. Click any option on the wheel or select next to rotate the constellation into focus.
         </p>
       </div>
 
@@ -365,7 +365,7 @@ export const CareerNetwork: React.FC<CareerNetworkProps> = ({ onContinue }) => {
           >
             <div style={{ fontSize: '0.72rem', color: 'var(--accent-mint)', fontWeight: 600, marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <CheckCircle2 size={13} />
-              <span>How CareerBridge Eliminates Career Fragmentation</span>
+              <span>How Skill Link Eliminates Career Fragmentation</span>
             </div>
             <div style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
               {activeNode.eliminates}

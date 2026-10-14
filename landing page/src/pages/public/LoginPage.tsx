@@ -26,7 +26,7 @@ import { api, BackendHealth } from '../../api/client';
 
 export const LoginPage: React.FC = () => {
   const [role, setRole] = useState<'student' | 'recruiter'>('student');
-  const [email, setEmail] = useState('student@careerbridge.ai');
+  const [email, setEmail] = useState('student@skilllink.ai');
   const [password, setPassword] = useState('student123');
   const [showPassword, setShowPassword] = useState(false);
   const [capsLockOn, setCapsLockOn] = useState(false);
@@ -72,7 +72,7 @@ export const LoginPage: React.FC = () => {
     setSelectedPersona(type);
     setRole(type);
     if (type === 'student') {
-      setEmail('student@careerbridge.ai');
+      setEmail('student@skilllink.ai');
       setPassword('student123');
       showToast('Student demo profile loaded: Alex Rivera (Stanford ML)', 'info');
     } else {
@@ -499,7 +499,7 @@ export const LoginPage: React.FC = () => {
                 {selectedPersona === 'student' && <Check size={12} color="#06B6D4" style={{ marginLeft: 'auto' }} />}
               </div>
               <div style={{ fontSize: '0.7rem', color: 'rgba(255, 255, 255, 0.6)' }}>Stanford • ML Track</div>
-              <div style={{ fontSize: '0.65rem', color: 'var(--accent-cyan)', marginTop: '2px' }}>student@careerbridge.ai</div>
+              <div style={{ fontSize: '0.65rem', color: 'var(--accent-cyan)', marginTop: '2px' }}>student@skilllink.ai</div>
               <button
                 type="button"
                 onClick={(e) => {
@@ -621,7 +621,7 @@ export const LoginPage: React.FC = () => {
                   setEmail(e.target.value);
                   setSelectedPersona(null);
                 }}
-                placeholder={role === 'student' ? 'student@careerbridge.ai' : 'recruiter@deepmind.com'}
+                placeholder={role === 'student' ? 'student@skilllink.ai' : 'recruiter@deepmind.com'}
                 className="interactive-input"
                 style={{
                   width: '100%',

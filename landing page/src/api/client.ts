@@ -17,7 +17,7 @@ class ApiClient {
     if (!isFormData) {
       headers['Content-Type'] = 'application/json';
     }
-    const token = localStorage.getItem('careerbridge_token');
+    const token = localStorage.getItem('skilllink_token') || localStorage.getItem('careerbridge_token');
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }

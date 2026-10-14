@@ -211,9 +211,9 @@ def seed_database(db: Session):
         db.add(LearningResource(**res))
 
     # 4. Default Demo Accounts
-    # Student Demo Account: student@careerbridge.ai / student123
+    # Student Demo Account: student@skilllink.ai / student123
     student_user = User(
-        email="student@careerbridge.ai",
+        email="student@skilllink.ai",
         hashed_password=get_password_hash("student123"),
         role=UserRole.STUDENT,
         is_active=True,

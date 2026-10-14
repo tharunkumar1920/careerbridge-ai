@@ -466,7 +466,7 @@ export const DEMO_RECRUITER_APPLICATIONS = [
       full_name: 'Alex Rivera',
       university: 'Stanford University',
       degree: 'B.S. CS 2026',
-      email: 'student@careerbridge.ai',
+      email: 'student@skilllink.ai',
       career_readiness_score: 78.5,
       github_url: 'https://github.com/alexrivera-ai',
       skills: ['Python', 'PyTorch', 'Machine Learning', 'FastAPI'],

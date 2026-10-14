@@ -90,9 +90,9 @@ export const CareerIntelligence: React.FC<CareerIntelligenceProps> = ({ onContin
           {/* 1. LEFT SIDEBAR NAVIGATION */}
           <aside className="student-dashboard-sidebar">
             {/* Brand Logo */}
-            <div className="student-sidebar-brand">
-              <span>CareerBridge</span>
-              <span className="brand-ai-badge">AI</span>
+            <div className="student-sidebar-brand" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <img src="/skill-link-icon.png" alt="Skill Link" style={{ width: '22px', height: '22px', objectFit: 'contain' }} />
+              <span style={{ fontWeight: 700, letterSpacing: '0.02em' }}>SKILL LINK</span>
             </div>
 
             {/* Nav Menu */}

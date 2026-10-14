@@ -31,11 +31,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAuth }) => {
         {/* Left Column: Brand & Tagline */}
         <div style={{ gridColumn: 'span 2' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <div className="brand-glyph" style={{ width: '22px', height: '22px' }}>
-              <Sparkles size={12} color="#FFF" />
-            </div>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.95rem', color: 'var(--text-primary)' }}>
-              CareerBridge<span style={{ color: 'var(--accent-cyan)' }}>AI</span>
+            <img
+              src="/skill-link-icon.png"
+              alt="Skill Link"
+              style={{ width: '24px', height: '24px', objectFit: 'contain' }}
+            />
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-primary)', letterSpacing: '0.03em' }}>
+              SKILL <span style={{ color: 'var(--accent-cyan)' }}>LINK</span>
             </span>
           </div>
 
@@ -171,7 +173,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAuth }) => {
         }}
       >
         <div>
-          © {new Date().getFullYear()} CareerBridge AI Inc. All rights reserved.
+          © {new Date().getFullYear()} Skill Link Inc. All rights reserved.
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
           <span>Stanford • MIT • Berkeley • CMU Verified Partner</span>

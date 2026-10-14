@@ -1,2 +1,2 @@
-"""CareerBridge AI Backend Package"""
+"""Skill Link Backend Package"""
 __version__ = "1.0.0"

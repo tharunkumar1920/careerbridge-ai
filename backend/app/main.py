@@ -12,7 +12,7 @@ from app.api.v1.router import api_v1_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application startup and shutdown events."""
-    logger.info("Initializing CareerBridge AI Database Tables...")
+    logger.info("Initializing Skill Link Database Tables...")
     Base.metadata.create_all(bind=engine)
 
     # Seed demonstration skills, roles, roadmaps, and jobs
@@ -24,9 +24,9 @@ async def lifespan(app: FastAPI):
     finally:
         db.close()
 
-    logger.info("CareerBridge AI Backend successfully initialized!")
+    logger.info("Skill Link Backend successfully initialized!")
     yield
-    logger.info("CareerBridge AI Backend shutting down...")
+    logger.info("Skill Link Backend shutting down...")
 
 
 app = FastAPI(
@@ -66,7 +66,7 @@ def health_check():
 def root():
     """Root endpoint with API overview."""
     return {
-        "message": "Welcome to CareerBridge AI API",
+        "message": "Welcome to Skill Link API",
         "documentation": "/docs",
         "api_v1": settings.API_V1_PREFIX
     }

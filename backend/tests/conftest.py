@@ -59,7 +59,7 @@ def client(db_session):
 
 @pytest.fixture
 def student_auth_headers(db_session):
-    user = db_session.query(User).filter(User.email == "student@careerbridge.ai").first()
+    user = db_session.query(User).filter(User.email.in_(["student@skilllink.ai", "student@careerbridge.ai"])).first()
     token = create_access_token(subject=user.id, role=user.role.value)
     return {"Authorization": f"Bearer {token}"}
 

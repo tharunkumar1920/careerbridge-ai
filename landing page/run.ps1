@@ -1,6 +1,6 @@
-# CareerBridge AI - One-Click PowerShell Runner
+# Skill Link - One-Click PowerShell Runner
 Write-Host "========================================================" -ForegroundColor Cyan
-Write-Host "  Starting CareerBridge AI Landing Page...              " -ForegroundColor Cyan
+Write-Host "  Starting Skill Link Frontend...                       " -ForegroundColor Cyan
 Write-Host "========================================================" -ForegroundColor Cyan
 Write-Host ""
 

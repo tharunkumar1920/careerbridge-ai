@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CareerBridge AI — Complete Architecture, Design, and UI Specification</title>
+    <title>Skill Link — Complete Architecture, Design, and UI Specification</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -504,7 +504,7 @@
             <div class="cover-top-accent"></div>
             <div class="cover-brand">
                 <div class="cover-logo-icon">CB</div>
-                <div class="cover-logo-text">CareerBridge AI</div>
+                <div class="cover-logo-text">Skill Link</div>
                 <span class="cover-logo-badge">Enterprise Edition</span>
             </div>
             
@@ -545,7 +545,7 @@
             </div>
 
             <div class="cover-footer">
-                <span>CareerBridge AI Platform Documentation</span>
+                <span>Skill Link Platform Documentation</span>
                 <span>Confidential & Academic Release</span>
             </div>
         </div>
@@ -607,10 +607,10 @@
 - <strong>Students</strong> lack actionable clarity regarding the exact skills demanded by industry roles. Traditional job descriptions are verbose, vague, and uncalibrated, leaving candidates unsure whether their academic preparation qualifies them for entry-level or junior engineering positions.
 - <strong>Recruitment Platforms</strong> rely on black-box keyword matching algorithms that penalize qualified candidates due to arbitrary keyword phrasing or provide candidates with zero transparent feedback when an application is rejected.
 - <strong>Skill Acquisition</strong> is fragmented. Students study disparate courses without an integrated roadmap that connects self-study directly to verified job openings and interactive mock interview evaluation.</p>
-<h3 id="12-the-careerbridge-solution">1.2 The CareerBridge Solution</h3>
-<p><strong>CareerBridge AI</strong> is an enterprise-grade, full-stack career intelligence, educational guidance, and transparent recruitment platform designed to eliminate the ambiguity between student capability and industry demand.</p>
+<h3 id="12-the-skill-link-solution">1.2 The Skill Link Solution</h3>
+<p><strong>Skill Link</strong> is an enterprise-grade, full-stack career intelligence, educational guidance, and transparent recruitment platform designed to eliminate the ambiguity between student capability and industry demand.</p>
 <div class="codehilite"><pre><span></span><code><span class="err">┌────────────────────────────────────────────────────────────────────────┐</span>
-<span class="err">│</span><span class="w">                        </span><span class="nx">CAREERBRIDGE</span><span class="w"> </span><span class="nx">AI</span><span class="w"> </span><span class="nx">ECOSYSTEM</span><span class="w">                       </span><span class="err">│</span>
+<span class="err">│</span><span class="w">                           </span><span class="nx">SKILL</span><span class="w"> </span><span class="nx">LINK</span><span class="w"> </span><span class="nx">ECOSYSTEM</span><span class="w">                          </span><span class="err">│</span>
 <span class="err">├───────────────────────────────┬────────────────────────────────────────┤</span>
 <span class="err">│</span><span class="w">     </span><span class="nx">STUDENT</span><span class="w"> </span><span class="nx">CAPABILITIES</span><span class="w">      </span><span class="err">│</span><span class="w">         </span><span class="nx">RECRUITER</span><span class="w"> </span><span class="nx">CAPABILITIES</span><span class="w">         </span><span class="err">│</span>
 <span class="err">├───────────────────────────────┼────────────────────────────────────────┤</span>
@@ -627,7 +627,7 @@
 
 <h3 id="13-key-innovations">1.3 Key Innovations</h3>
 <ol>
-<li><strong>Explainable Deterministic Matching</strong>: Unlike opaque scoring models, CareerBridge utilizes a deterministic matching engine that breaks down candidate-job alignment into <strong>70% Required Skills</strong>, <strong>30% Preferred Skills</strong>, and a <strong>+5% Project Evidence Bonus</strong>.</li>
+<li><strong>Explainable Deterministic Matching</strong>: Unlike opaque scoring models, Skill Link utilizes a deterministic matching engine that breaks down candidate-job alignment into <strong>70% Required Skills</strong>, <strong>30% Preferred Skills</strong>, and a <strong>+5% Project Evidence Bonus</strong>.</li>
 <li><strong>Local Intelligent AI Architecture</strong>: The platform operates with 100% offline intelligence out-of-the-box (zero mandatory external API dependencies) via deterministic mathematical algorithms, heuristic NLP, and curated question rubrics, while maintaining plug-and-play compatibility with Gemini, OpenAI, and Anthropic.</li>
 <li><strong>Immersive 3D WebGL Storytelling</strong>: A custom Three.js continuous spline journey canvas seamlessly guides first-time visitors from initial skill exploration down to career triumph with smooth scroll-coupled camera interpolation.</li>
 <li><strong>Cinematic Dark Glassmorphism UI</strong>: High-contrast, accessibility-tested visual tokens (<code>#05070D</code> background, frosted glass panels with 24px backdrop blur, vibrant lavender/cyan accents) deliver an exceptionally modern desktop experience.</li>
@@ -765,7 +765,7 @@
 <hr />
 <h3 id="32-transparent-job-matching-engine-7030-rule-project-bonus">3.2 Transparent Job Matching Engine (70/30 Rule + Project Bonus)</h3>
 <p>Located in <code>backend/app/services/matching_engine.py</code>.</p>
-<p>Unlike opaque black-box recruiters, CareerBridge implements a mathematically transparent matching model:</p>
+<p>Unlike opaque black-box recruiters, Skill Link implements a mathematically transparent matching model:</p>
 <div class="codehilite"><pre><span></span><code>┌─────────────────────────────────────────────────────────────────┐
 │                    TRANSPARENT MATCH FORMULA                    │
 ├────────────────────────────────┬────────────────────────────────┤
@@ -1185,7 +1185,7 @@
 </tbody>
 </table>
 <h4 id="4-companies-table">4. <code>companies</code> Table</h4>
-<p>Represents employer organizations posting roles on CareerBridge.</p>
+<p>Represents employer organizations posting roles on Skill Link.</p>
 <table>
 <thead>
 <tr>
@@ -1804,7 +1804,7 @@
 <h4 id="interactive-sign-in-page-loginpagetsx">Interactive Sign In Page (<code>LoginPage.tsx</code>)</h4>
 <p>Redesigned in Phase 10 with interactive usability features:
 - <strong>1-Click Demo Persona Cards</strong>:
-  - <strong>Alex Rivera (Student)</strong>: Auto-fills <code>student@careerbridge.ai</code> / <code>student123</code> with a single click.
+  - <strong>Alex Rivera (Student)</strong>: Auto-fills <code>student@skilllink.ai</code> / <code>student123</code> with a single click.
   - <strong>Sarah Chen (Recruiter)</strong>: Auto-fills <code>recruiter@deepmind.com</code> / <code>recruiter123</code> with a single click.
 - <strong>Interactive Password Controls</strong>: <code>Eye</code> / <code>EyeOff</code> visibility toggle buttons.
 - <strong>Real-Time Caps Lock Detection</strong>: Warning banner appears instantly when Caps Lock is active.
@@ -1909,7 +1909,7 @@
 </ol>
 <hr />
 <h2 id="11-project-conclusion-summary-table">11. Project Conclusion &amp; Summary Table</h2>
-<p>CareerBridge AI represents a complete, mathematically grounded, and visually stunning career platform engineered for modern technical talent.</p>
+<p>Skill Link represents a complete, mathematically grounded, and visually stunning career platform engineered for modern technical talent.</p>
 <table>
 <thead>
 <tr>
@@ -1961,7 +1961,7 @@
 </tbody>
 </table>
 <hr />
-<p><em>Developed for CareerBridge AI — AI-Powered Career Intelligence &amp; Recruitment Platform.</em></p>
+<p><em>Developed for Skill Link — AI-Powered Career Intelligence &amp; Recruitment Platform.</em></p>
     </div>
 
 </body>

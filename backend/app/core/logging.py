@@ -11,7 +11,7 @@ def setup_logging():
             logging.StreamHandler(sys.stdout)
         ]
     )
-    logger = logging.getLogger("careerbridge")
+    logger = logging.getLogger("skilllink")
     logger.setLevel(logging.INFO)
     return logger
 

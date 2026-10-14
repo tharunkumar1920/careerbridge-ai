@@ -29,7 +29,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   const [formData, setFormData] = useState({
     name: 'Alex Rivera',
-    email: 'student@careerbridge.ai',
+    email: 'student@skilllink.ai',
     password: 'student123',
     universityOrCompany: 'Stanford University',
     roleOrTrack: 'AI / Machine Learning Engineer',
@@ -53,7 +53,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     } else {
       setFormData({
         name: 'Alex Rivera',
-        email: 'student@careerbridge.ai',
+        email: 'student@skilllink.ai',
         password: 'student123',
         universityOrCompany: 'Stanford University',
         roleOrTrack: 'AI / Machine Learning Engineer',
@@ -170,6 +170,18 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           <X size={20} />
         </button>
 
+        {/* Brand Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+          <img
+            src="/skill-link-icon.png"
+            alt="Skill Link"
+            style={{ width: '28px', height: '28px', objectFit: 'contain' }}
+          />
+          <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.15rem', letterSpacing: '0.03em', color: '#FFFFFF' }}>
+            SKILL <span style={{ color: 'var(--accent-cyan)' }}>LINK</span>
+          </span>
+        </div>
+
         {/* 🚀 INSTANT 1-CLICK DEMO ACCESS BAR */}
         <div
           style={{
@@ -257,7 +269,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               setErrorMessage('');
               setFormData((prev) => ({
                 ...prev,
-                email: 'student@careerbridge.ai',
+                email: 'student@skilllink.ai',
                 password: 'student123',
                 name: 'Alex Rivera',
                 universityOrCompany: 'Stanford University',
@@ -320,8 +332,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 {action === 'login'
                   ? `Log In as ${mode === 'student' ? 'Student' : 'Recruiter'}`
                   : mode === 'student'
-                  ? 'Join CareerBridge AI'
-                  : 'Partner with CareerBridge AI'}
+                  ? 'Join Skill Link'
+                  : 'Partner with Skill Link'}
               </h3>
               <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
                 {action === 'login'
@@ -389,7 +401,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   <input
                     type="email"
                     required
-                    placeholder={mode === 'student' ? 'student@careerbridge.ai' : 'recruiter@deepmind.com'}
+                    placeholder={mode === 'student' ? 'student@skilllink.ai' : 'recruiter@deepmind.com'}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     style={{
@@ -548,7 +560,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               Authentication Successful!
             </h4>
             <p style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', maxWidth: '400px', margin: '0 auto 24px auto', lineHeight: 1.5 }}>
-              Welcome back to CareerBridge AI. Entering your verified {mode === 'student' ? 'Student Workspace' : 'Recruitment Command Center'}...
+              Welcome back to Skill Link. Entering your verified {mode === 'student' ? 'Student Workspace' : 'Recruitment Command Center'}...
             </p>
 
             <button onClick={handleEnterWorkspace} className="btn-primary" style={{ padding: '12px 32px', cursor: 'pointer' }}>

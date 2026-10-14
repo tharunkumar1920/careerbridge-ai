@@ -1,7 +1,7 @@
-# CareerBridge AI — Landing Page
+# Skill Link — Frontend & Landing Page
 
 > **"Your Skills. Your Goals. Your Future."**  
-> A futuristic, minimal, 3D landing page for **CareerBridge AI** — an AI-powered continuous career intelligence platform connecting college students with personalized skill benchmarking, roadmaps, internships, and recruiters.
+> A futuristic, minimal, 3D web application for **Skill Link** — an AI-powered continuous career intelligence platform connecting college students with personalized skill benchmarking, roadmaps, internships, and recruiters.
 
 ---
 
@@ -47,7 +47,7 @@ Both commands will start the Vite development server and automatically open the 
 ## ✨ Features & Architecture
 
 1. **Fixed Modern Header**:
-   - Pinned at the top with the `CareerBridge AI` brand glyph on the left.
+   - Pinned at the top with the `Skill Link` brand logo on the left.
    - Quick-access `Log In` and `Sign In` action buttons on the right.
    - Frosted glass blur background (`backdrop-filter: blur(24px)`).
 

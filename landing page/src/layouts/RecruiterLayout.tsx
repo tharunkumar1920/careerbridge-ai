@@ -115,21 +115,13 @@ export const RecruiterLayout: React.FC = () => {
         >
           {/* Left: Brand Identity */}
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', flexShrink: 0 }}>
-            <div
-              style={{
-                width: '24px',
-                height: '24px',
-                borderRadius: '6px',
-                background: 'linear-gradient(135deg, #10B981, #06B6D4)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Sparkles size={13} color="#FFFFFF" />
-            </div>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.95rem', color: '#FFFFFF', letterSpacing: '-0.01em' }}>
-              CareerBridge<span style={{ color: 'var(--accent-mint, #34D399)' }}>RECRUIT</span>
+            <img
+              src="/skill-link-icon.png"
+              alt="Skill Link"
+              style={{ width: '26px', height: '26px', objectFit: 'contain' }}
+            />
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.95rem', color: '#FFFFFF', letterSpacing: '0.02em' }}>
+              SKILL <span style={{ color: 'var(--accent-mint, #34D399)' }}>RECRUIT</span>
             </span>
           </Link>
 

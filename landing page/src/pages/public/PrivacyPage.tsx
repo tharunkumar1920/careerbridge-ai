@@ -27,7 +27,7 @@ export const PrivacyPage: React.FC = () => {
           Privacy Policy
         </h1>
         <p style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '0.9rem' }}>
-          Last updated: October 2026 • CareerBridge AI Platform Data Governance
+          Last updated: October 2026 • Skill Link Platform Data Governance
         </p>
       </div>
 
@@ -50,7 +50,7 @@ export const PrivacyPage: React.FC = () => {
             <Lock size={18} color="#06B6D4" /> 1. Data Collection & Student Ownership
           </h2>
           <p>
-            CareerBridge AI collects only the educational and professional information necessary to evaluate skill gaps, generate customized roadmaps, and match candidates to verified employers. Your profile data, project links, and resume remain your intellectual property.
+            Skill Link collects only the educational and professional information necessary to evaluate skill gaps, generate customized roadmaps, and match candidates to verified employers. Your profile data, project links, and resume remain your intellectual property.
           </p>
         </section>
 

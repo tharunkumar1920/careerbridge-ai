@@ -80,8 +80,10 @@ def register(req: RegisterRequest, response: Response, db: Session = Depends(get
 
 @router.post("/login", response_model=Token)
 def login(req: LoginRequest, response: Response, db: Session = Depends(get_db)):
-    """Authenticate with email and password."""
-    user = db.query(User).filter(User.email == req.email.lower()).first()
+    login_email = req.email.lower()
+    if login_email == "student@careerbridge.ai":
+        login_email = "student@skilllink.ai"
+    user = db.query(User).filter(User.email == login_email).first()
     if not user or not verify_password(req.password, user.hashed_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

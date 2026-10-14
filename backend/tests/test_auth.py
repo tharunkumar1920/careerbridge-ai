@@ -1,7 +1,7 @@
 def test_login_success(client):
     response = client.post(
         "/api/v1/auth/login",
-        json={"email": "student@careerbridge.ai", "password": "student123"}
+        json={"email": "student@skilllink.ai", "password": "student123"}
     )
     assert response.status_code == 200
     data = response.json()
@@ -13,7 +13,7 @@ def test_login_success(client):
 def test_login_invalid_password(client):
     response = client.post(
         "/api/v1/auth/login",
-        json={"email": "student@careerbridge.ai", "password": "wrongpassword"}
+        json={"email": "student@skilllink.ai", "password": "wrongpassword"}
     )
     assert response.status_code == 401
 
@@ -40,7 +40,7 @@ def test_register_duplicate_email(client):
     response = client.post(
         "/api/v1/auth/register",
         json={
-            "email": "student@careerbridge.ai",
+            "email": "student@skilllink.ai",
             "password": "password123",
             "role": "STUDENT",
             "name": "Alex Duplicate"
@@ -52,4 +52,4 @@ def test_register_duplicate_email(client):
 def test_get_current_user(client, student_auth_headers):
     response = client.get("/api/v1/auth/me", headers=student_auth_headers)
     assert response.status_code == 200
-    assert response.json()["email"] == "student@careerbridge.ai"
+    assert response.json()["email"] == "student@skilllink.ai"

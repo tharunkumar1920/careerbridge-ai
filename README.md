@@ -1,4 +1,8 @@
-# CareerBridge AI
+<p align="center">
+  <img src="skill-link-full.png" alt="Skill Link Logo" width="360" />
+</p>
+
+# Skill Link
 
 > **AI-Powered Career Intelligence, Educational Guidance, and Recruitment Platform**  
 > *"Bridge Your Skills. Build Your Tomorrow."*
@@ -7,7 +11,7 @@
 
 ## 1. System Overview
 
-CareerBridge AI connects college talent with verified industry opportunities through an end-to-end intelligence pipeline:
+Skill Link connects college talent with verified industry opportunities through an end-to-end intelligence pipeline:
 
 ```
 STUDENT PROFILE
@@ -174,7 +178,7 @@ The database comes pre-seeded with full profiles, skills, and job postings:
 
 | Account Type | Email | Password | Access / Features |
 | :--- | :--- | :--- | :--- |
-| **Student** | `student@careerbridge.ai` | `student123` | Full dashboard, AI roadmaps, mock interview rubrics, resume analyzer, opportunity matching |
+| **Student** | `student@skilllink.ai` | `student123` | Full dashboard, AI roadmaps, mock interview rubrics, resume analyzer, opportunity matching |
 | **Recruiter** | `recruiter@deepmind.com` | `recruiter123` | Post roles, candidate search, application pipeline status changes, talent analytics |
 
 *Note: You can also register your own student or recruiter account with any email from the `/register` page.*
@@ -216,7 +220,7 @@ By default, the backend runs instantly using SQLite (`backend/careerbridge.db`) 
 
 ## 8. AI Provider Configuration
 
-CareerBridge AI operates fully in **Local Intelligent Mode** out-of-the-box:
+Skill Link operates fully in **Local Intelligent Mode** out-of-the-box:
 - Deterministic skill gap scoring (70% required / 30% preferred / +5% project evidence)
 - Rule-based keyword and action verb resume diagnostics
 - Standardized rubric mock interview scoring
@@ -238,4 +242,4 @@ If an external key is absent or network requests time out, the system automatica
 
 ## 9. License
 
-MIT License. Developed for CareerBridge AI.
+MIT License. Developed for Skill Link.

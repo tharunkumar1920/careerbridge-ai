@@ -52,7 +52,7 @@ def test_mock_interview_workflow(client, student_auth_headers):
 def test_assistant_grounded_chat(client, student_auth_headers):
     response = client.post(
         "/api/v1/assistant/chat",
-        json={"message": "What jobs are open on CareerBridge AI right now?"},
+        json={"message": "What jobs are open on Skill Link right now?"},
         headers=student_auth_headers
     )
     assert response.status_code == 200
